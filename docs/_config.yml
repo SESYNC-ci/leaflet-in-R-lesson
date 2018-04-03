@@ -1,15 +1,26 @@
 # Site
 
-title:
+title: Leaflet in R
 handouts:
-tag:
-lesson:
-instructor:
-authors:
+  - worksheet1.R
+  - worksheet2.R
+  - worksheet3.R
+  - worksheet4.R
+  - data/nlcd_crop.grd
+  - data/wqp_sites.shp
+  - data/cb_2016_us_county_5m.shp
+  - data/huc250k.shp
+  - data/README.md
+tag: v0.0
+lesson: 8
+instructor: Kelly Hondula
+authors: Kelly Hondula
 
 # Slides
 
 slide_sorter:
+  - intro
+  - conclude
 
 #####################################
 # Only modify content above or risk #
