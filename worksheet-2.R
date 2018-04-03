@@ -1,0 +1,93 @@
+# worksheet 2
+# leaflet with data
+
+library(leaflet)
+library(sf)
+library(raster)
+library(dplyr)
+
+# read in water quality portal points
+wqp_sites <- ...("data/wqp_sites")
+
+# read in md county boundaries
+counties_md <- st_read("data/cb_2016_us_county_5m") %>% 
+  filter(STATEFP == "24") %>%
+  ...(...)
+
+# read in watershed boundaries for northeast region
+wbd_reg2 <- st_read("data/huc250k") %>%
+  filter(REG == "02") %>%
+  st_transform(4326)
+
+# nlcd raster
+nlcd <- ...("data/nlcd_crop.grd")
+
+# add polygons
+
+leaflet() %>%
+  ...(data = counties_md)
+
+leaflet() %>%
+  ...() %>%
+  addPolygons(data = counties_md)
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = counties_md, 
+              ...)
+
+# use polygon attributes - labeling
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = counties_md, ...) %>%
+  addPolygons(data = counties_md, ...) %>%
+  ...
+
+# use polygon attributes - color fill
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = wbd_reg2)
+
+pal <- colorNumeric("PiYG", wbd_reg2$AREA)
+# use brewer.pal.info to get list of palettes
+# also see colorFactor(), colorBin(), colorQuantile()
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = wbd_reg2, 
+              fillColor = ..., 
+              fillOpacity = 1, 
+              weight =1)
+
+# add Legend
+
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = wbd_reg2, 
+              fillColor = ~pal(AREA), 
+              fillOpacity = 0.9, 
+              weight =1) %>%
+  ...
+
+# add points
+
+leaflet() %>%
+  addTiles() %>%
+  ...(data = wqp_sites[1:1000,])
+
+# cluster points
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(data = wqp_sites, 
+             ...,
+             popup = ...(MntrnLN, ",", OrgnztI))
+
+# add raster
+
+leaflet() %>%
+  addTiles() %>%
+  ...(nlcd)
+
