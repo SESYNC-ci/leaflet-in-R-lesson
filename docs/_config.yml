@@ -22,6 +22,11 @@ authors:
 
 slide_sorter:
   - intro
+  - leaflet
+  - layers
+  - datalayers
+  - leafletshiny
+  - leafletproxy
   - conclude
 
 #####################################

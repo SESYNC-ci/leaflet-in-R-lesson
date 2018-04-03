@@ -51,7 +51,7 @@ nhd_wms_url <- "https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServ
 
 leaflet() %>% 
   setView(lng = -111.846061, lat = 36.115847, zoom = 12) %>%
-  ...
+  add
 
 # mini map
 
