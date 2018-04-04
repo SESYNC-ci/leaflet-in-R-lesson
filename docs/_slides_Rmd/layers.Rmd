@@ -83,7 +83,7 @@ leaflet() %>%
 
 ===
 
-Trigger custom javascript logic with *EasyButtons*
+Trigger custom javascript logic with *EasyButtons*. 
 
 ```{r leaflet_findme, title = "worksheet-1.R", eval = FALSE}
 leaflet() %>%
@@ -94,3 +94,4 @@ leaflet() %>%
 
 ```
 
+The fine print: RStudio's viewer pane or external window does not always behave the same as a web brower...

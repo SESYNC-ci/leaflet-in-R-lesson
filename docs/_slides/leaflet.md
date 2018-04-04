@@ -56,5 +56,5 @@ leaflet() %>%
 
 Zoom all the way out. What projection does it look like this map is using? 
 
-![dragons]({{ site.baseurl }}/images/dragons.png){:height="400px"}
+![dragons]({{ site.baseurl }}/images/dragons.png){:height="200%"}
 
