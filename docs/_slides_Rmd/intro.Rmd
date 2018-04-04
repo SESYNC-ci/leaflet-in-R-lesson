@@ -11,6 +11,6 @@ Like static plotting and mapping, there lots of options for interactive mapping 
 
 ## Objectives for this lesson
 
-* Learn how to build leaflet maps with different backgrounds and layered features
-* Customize the appearance of point and shape layers using attributes
-* Glimpse using leaflet objects in RShiny
+* Learn how to build leaflet maps with background tiles and layered features
+* Customize the appearance of point and shape layers using data attributes
+* Get started using leaflet objects in RShiny
