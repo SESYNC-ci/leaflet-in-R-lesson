@@ -45,7 +45,7 @@ leaflet() %>%
 
 ===
 
-or the USGS national map: 
+or USGS topographic maps: 
 
 
 ~~~r
@@ -57,6 +57,8 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
+
+Thanks USGS! Check out more USGS R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
 
 ===
 

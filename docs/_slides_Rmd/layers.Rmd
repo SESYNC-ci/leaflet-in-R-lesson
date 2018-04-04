@@ -41,7 +41,7 @@ leaflet() %>%
 
 ===
 
-or the USGS national map: 
+or USGS topographic maps: 
 
 ```{r leaflet_topo, title = "worksheet-1.R", eval = FALSE}
 nhd_wms_url <- "https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer"
@@ -51,6 +51,8 @@ leaflet() %>%
   addWMSTiles(nhd_wms_url, layers = "0")
 
 ```
+
+Thanks USGS! Check out more USGS R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
 
 ===
 
