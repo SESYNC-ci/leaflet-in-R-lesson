@@ -2,14 +2,15 @@
 
 title: Leaflet in R
 handouts:
-  - worksheet1.R
-  - worksheet2.R
-  - worksheet3.R
-  - worksheet4.R
+  - worksheet-1.R
+  - worksheet-2.R
+  - worksheet-3.R
+  - worksheet-4.R
   - data/nlcd_crop.grd
+  - data/nlcd_crop.gri
   - data/wqp_sites.shp
-  - data/cb_2016_us_county_5m.shp
-  - data/huc250k.shp
+  - data/cb_2016_us_county_5m
+  - data/huc250k
   - data/README.md
 tag: v0.0
 lesson: 8
