@@ -29,7 +29,7 @@ server <- function(input, output) {
       addLegend(position = "bottomright", pal = pal, values = wbd_reg2$AREA)
   })
   
-  # # remember to comment out the pal defn earlier
+  # # remember to take the input object out of the pal defn in renderLeaflet
   # observe({
   #   pal <- colorNumeric(input$colors, wbd_reg2$AREA)
   # 
