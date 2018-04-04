@@ -1,32 +1,30 @@
 ---
+editor_options: 
+  chunk_output_type: console
 ---
 
-## Interactive maps with Leaflet
+## What's a Leaflet
 
-*leaflet* produces interactive maps, with controls to zoom, pan and toggle layers and combine local data with base layers from web mapping services.
+leaflet produces maps have controls to zoom, pan and toggle layers on and off, and can combine local data with base layers from web mapping services. 
+
+Maps will appear in RStudio's Viewer pane, and can also be viewed in a web browser and saved as html files.
 
 ===
 
-The `leaflet()` function creates an empty leaflet map to which layers can be added using the pipe (`%>%`) operator. The `addTiles` functions adds a base tiled map; by default, it imports tiles made from  [OpenStreetMap](https://www.openstreetmap.org/) data. We center and set an initial zoom level the map with `setView`. 
+The `leaflet()` function creates an empty leaflet map to which layers can be added using the pipe (`%>%`) operator. The `addTiles()` functions adds a base tiled map; by default, it uses tiles made from [OpenStreetMap](https://www.openstreetmap.org/) data. Center and set an initial zoom level the map with `setView()`. Switch to the "Viewer" tab in RStudio to see the result.
 
 ```{r leaflet_base, title = "worksheet-1.R", eval = FALSE}
 library(leaflet)
+
 leaflet() %>%
-      addTiles() %>%
-      setView(lng = -76.505206, lat = 38.9767231, 
-                    zoom = 7)
+    addTiles() %>%
+    setView(lng = -76.505206, lat = 38.9767231, zoom = 7)
 
 ```
 
 ===
 
-Switch to the "Viewer" tab in RStudio to see the result.
-
-<!-- ![leaflet1]({{ site.baseurl }}/images/leaflet1.png) -->
-
-===
-
-add marker
+Add a new layer with a point marker using `addMarkers()`, with a custom message that displays when the marker is clicked. 
 
 ```{r leaflet_marker, title = "worksheet-1.R", eval = FALSE}
 leaflet() %>%
@@ -38,7 +36,7 @@ leaflet() %>%
 
 ===
 
-use provider tiles
+In addition to OSM, there are many other data providers that make sets of tiles available to use as basemaps. There is a R list object called `providers` with the names of these options. 
 
 ```{r leaflet_providertiles, title = "worksheet-1.R", eval = FALSE}
 leaflet() %>%
@@ -49,4 +47,8 @@ leaflet() %>%
 ```
 
 ===
+
+Zoom all the way out. What projection does it look like this map is using? 
+
+![dragons]({{ site.baseurl }}/images/dragons.jpg)
 
