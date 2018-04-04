@@ -5,12 +5,12 @@
 
 Main functions for leaflet maps
 
-* **View window** - setView(lat, lon, zoom) fitBounds() setMaxBounds()
-* **Background tiles** - addTiles() addProviderTiles() addWMSTiles()
-* **Point layers** - addMarkers() addCircleMarkers() addAwesomeMarkers() addLabelOnlyMarkers()
-* **Shape layers** - addPolylines() addCircles() addRectangles() addPolygons()
-* **Images** - addRasterImage()
-* **Common features** - addLegend() addLayersControl() addControl()
+* **View window** - `setView(lat, lon, zoom)` `fitBounds()` `setMaxBounds()`
+* **Background tiles** - `addTiles()` `addProviderTiles()` `addWMSTiles()`
+* **Point layers** - `addMarkers()` `addCircleMarkers()` `addAwesomeMarkers()` `addLabelOnlyMarkers()`
+* **Shape layers** - `addPolylines()` `addCircles()` `addRectangles()` `addPolygons()`
+* **Images** - `addRasterImage()`
+* **Common features** - `addLegend()` `addLayersControl()` `addControl()`
 
 For Shiny apps
 
