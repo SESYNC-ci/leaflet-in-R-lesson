@@ -7,4 +7,10 @@
 
 Like static plotting and mapping, there lots of options for interactive mapping in R. The `leaflet` package is actively maintained by RStudio. Some other packages for interactive maps that build off of leaflet, or other interactive plotting libraries, are: `tmap`, `ggiraph`, `rbokeh`, `plotly`, `highcharter`, `mapedit`, `mapview`, `leaflet.extras`, and `leaflet.esri`.
 
+===
 
+## Objectives for this lesson
+
+* Learn how to build leaflet maps with different backgrounds and layered features
+* Customize the appearance of point and shape layers using attributes
+* Glimpse using leaflet objects in RShiny
