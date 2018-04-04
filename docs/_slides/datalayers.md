@@ -10,22 +10,18 @@ Spatial objects (points, lines, polygons, rasters) in your R environment can als
 
 ===
 
+Read in data using sf and raster packages.
+
 
 ~~~r
 library(sf)
 library(raster)
 library(dplyr)
-# read in water quality portal points
 wqp_sites <- st_read("data/wqp_sites") 
-# read in md county boundaries
 counties_md <- st_read("data/cb_2016_us_county_5m") %>% 
-  filter(STATEFP == "24") %>%
-  st_transform(4326)
-# read in watershed boundaries for northeast region
+  filter(STATEFP == "24") %>% st_transform(4326)
 wbd_reg2 <- st_read("data/huc250k/") %>%
-  filter(REG == "02") %>%
-  st_transform(4326)
-# nlcd raster
+  filter(REG == "02") %>% st_transform(4326)
 nlcd <- raster("data/nlcd_crop.grd")
 ~~~
 {:.text-document title="worksheet-2.R"}
@@ -33,7 +29,7 @@ nlcd <- raster("data/nlcd_crop.grd")
 
 ===
 
-Add Polygons 
+Add a polygons layer, being sure to specify the `data = ` argument. All of the `add*` layers have "map" as the first argument, facilitating use of the pipe (`%>%`) operator, but `data` is not the second argument so it must be named. 
 
 
 ~~~r
@@ -46,7 +42,7 @@ leaflet() %>%
 
 ===
 
-Customize Polygons 
+Customize Polygons with border and fill colors and opacities.
 
 
 ~~~r
@@ -94,6 +90,8 @@ leaflet() %>%
 
 ===
 
+Add a legend (which will likely duplicate arguments from the layer that used that palette). 
+
 
 ~~~r
 leaflet() %>%
@@ -109,7 +107,7 @@ leaflet() %>%
 
 ===
 
-Add points
+Add points as markers, circle markers, or [customized icons](https://rstudio.github.io/leaflet/markers.html).
 
 
 ~~~r

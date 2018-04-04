@@ -3,7 +3,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## What's a Leaflet
+## What's a Leaflet?
 
 leaflet produces maps have controls to zoom, pan and toggle layers on and off, and can combine local data with base layers from web mapping services. 
 
@@ -56,5 +56,5 @@ leaflet() %>%
 
 Zoom all the way out. What projection does it look like this map is using? 
 
-![dragons]({{ site.baseurl }}/images/dragons.png)
+![dragons]({{ site.baseurl }}/images/dragons.png | width = 400)
 
