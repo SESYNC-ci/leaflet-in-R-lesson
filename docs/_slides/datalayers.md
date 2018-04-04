@@ -10,7 +10,7 @@ Spatial objects (points, lines, polygons, rasters) in your R environment can als
 
 ===
 
-Read in data using sf and raster packages.
+Read in data using sf and raster packages. Points are from the [Water Quality Portal](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016WR019993) [accessed via](https://github.com/SESYNC-ci/leaflet-in-R-lesson/blob/master/get_wqp_sites.R) the `dataRetrieval` package. County boundaries are from the [Census](https://www.census.gov/geo/maps-data/data/tiger-line.html) and [Watershed boundaries](https://water.usgs.gov/maps.html) are from USGS. 
 
 
 ~~~r
@@ -37,7 +37,7 @@ leaflet() %>%
   addTiles() %>%
   addPolygons(data = counties_md)
 ~~~
-{:.text-document title="worksheet-1.R"}
+{:.text-document title="worksheet-2.R"}
 
 
 ===
