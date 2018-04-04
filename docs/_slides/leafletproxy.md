@@ -1,7 +1,7 @@
 ---
 ---
 
-## Leaflet in shiny
+## Leaflet in shiny for people in a hurry
 
 Rendering maps can be slow. Use `leafletProxy()` so the whole map doesn't have to be re-drawn every time the user input is updated. 
 
@@ -33,8 +33,7 @@ observe({
       clearShapes() %>% clearControls() %>%
       addPolygons(data = wbd_reg2, fill = TRUE,
                   color = "black", weight =1,
-                  fillColor = ~pal(AREA),
-                  fillOpacity = 0.8,
+                  fillColor = ~pal(AREA), fillOpacity = 0.8,
                   popup = ~HUC_NAME) %>%
       addLegend(position = "bottomright", pal = pal, values = wbd_reg2$AREA)
 
@@ -42,6 +41,4 @@ observe({
 ~~~
 {:.text-document title="worksheet-4.R"}
 
-
-===
 
