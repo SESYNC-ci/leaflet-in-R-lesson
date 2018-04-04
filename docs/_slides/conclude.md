@@ -3,10 +3,16 @@
 
 ## Summary
 
-* make html maps with leaflet
-* use public data on the web
-* add local data
-* use in shiny apps! 
+Main functions for leaflet maps
 
-Some notes about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) and why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). 
+* **View window** - setView(lat, lon, zoom) fitBounds() setMaxBounds()
+* **Background tiles** - addTiles() addProviderTiles() addWMSTiles()
+* **Point layers** - addMarkers() addCircleMarkers() addAwesomeMarkers() addLabelOnlyMarkers()
+* **Shape layers** - addPolylines() addCircles() addRectangles() addPolygons()
+* **Images** - addRasterImage()
+* **Common features** - addLegend() addLayersControl() addControl()
 
+For Shiny apps
+
+* `renderLeaflet()` objects in the server and use them in the ui with `leafletOutput()`
+* Use `leafletProxy()` to avoid re-rendering the whole map object

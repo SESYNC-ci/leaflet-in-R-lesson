@@ -45,7 +45,7 @@ leaflet() %>%
 
 ===
 
-or USGS topographic maps: 
+or USGS topographic maps from the [National Map](https://viewer.nationalmap.gov/help/HowTo.htm): 
 
 
 ~~~r
@@ -76,7 +76,7 @@ leaflet() %>%
 
 ===
 
-Even more new features coming soon! 
+Add layers with common map elements and customize them with `add*`. Even more new features coming soon! 
 
 
 ~~~r
@@ -86,7 +86,8 @@ leaflet() %>%
   addMiniMap(zoomLevelOffset = -4) %>%
   addGraticule() %>%
   addTerminator() %>% 
-  addMeasure()
+  addMeasure() %>%
+  addScaleBar()
 ~~~
 {:.text-document title="worksheet-1.R"}
 
@@ -107,4 +108,4 @@ leaflet() %>%
 {:.text-document title="worksheet-1.R"}
 
 
-The fine print: RStudio's viewer pane or external window does not always behave the same as a web brower...
+The fine print: Note that RStudio's viewer pane or external window does not always behave the same as a web brower. 

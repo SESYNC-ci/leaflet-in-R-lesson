@@ -5,7 +5,7 @@ editor_options:
 
 ## Add data Layers
 
-Spatial objects (points, lines, polygons, rasters) in your R environment can also be added as map layers, provided that they have a CRS defined with a datum. Leaflet will try to make the necessary trasnformation to display your data in EPSG:4326. 
+Spatial objects (points, lines, polygons, rasters) in your R environment can also be added as map layers, provided that they have a CRS defined with a datum. Leaflet will try to make the necessary trasnformation to display your data in [EPSG:3857](https://epsg.io/3857). 
 
 
 ===

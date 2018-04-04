@@ -7,7 +7,11 @@ Add even more interactivity and customization to leaflet maps by incorporating t
 
 As you may have learned in the [Shiny lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/), the app comprises a *user interface* object that defines how it appears, and a *server* object that defines how it behaves. 
 
+===
+
 The ui and server interact through `*input` and `*output` objects such as input widgets, plots, buttons, tables, etc. Leaflet maps in Shiny are constructed with `renderLeaflet()` and displayed in the output using `leafletOutput()`.
+
+![shinyarrows]({{ site.baseurl }}/images/shiny-arrows.png)
 
 ===
 
