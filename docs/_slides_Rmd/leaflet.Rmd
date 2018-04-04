@@ -36,7 +36,7 @@ leaflet() %>%
 
 ===
 
-In addition to OSM, there are many other data providers that make sets of tiles available to use as basemaps. There is a R list object called `providers` with the names of these options. 
+In addition to OSM, there are many other data providers that make sets of [tiles](https://wiki.openstreetmap.org/wiki/Tiles) available to use as basemaps. There is a R list object called `providers` with the names of these options. 
 
 ```{r leaflet_providertiles, title = "worksheet-1.R", eval = FALSE}
 leaflet() %>%
@@ -49,7 +49,6 @@ leaflet() %>%
 ===
 
 Zoom all the way out. What projection does it look like this map is using? 
-
 ![dragons]({{ site.baseurl }}/images/dragons.png){:height="200%"}
 
-Read more about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) and why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). 
+Read more about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) e.g. why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). Learn how to define a custom leafletCRS [here](https://rstudio.github.io/leaflet/projections.html) or see [examples](http://rpubs.com/bhaskarvk/leaflet-polarmaps).
