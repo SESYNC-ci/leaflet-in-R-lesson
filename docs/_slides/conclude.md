@@ -8,4 +8,5 @@
 * add local data
 * use in shiny apps
 
-Note about the intracacies of web mercator
+Some notes about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) and why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). 
+

@@ -1,13 +1,14 @@
 ---
+editor_options: 
+  chunk_output_type: console
 ---
 
-## Layers
+## Layers Control
 
-about layers 
+Layers can be assigned to named **groups** which can be toggled on and off by the user. *baseGroups* are selected with radio buttons (can only choose one at a time), and *overlayGroups* get checkboxes. 
 
-===
+To implement layers control, add group names to individual layers with the `group =` argument **AND** add the layers control layer using `addLayersControl()`. 
 
-layers
 
 
 ~~~r
@@ -25,7 +26,7 @@ leaflet() %>%
 
 ===
 
-To show how leaflet can access open data from various web mapping services (WMS), we add real-time weather radar data from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/ogc/).
+Another type of tile layer is avaible through many web mapping services (WMS), such as the real-time weather radar data from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/ogc/).
 
 
 ~~~r
@@ -44,7 +45,7 @@ leaflet() %>%
 
 ===
 
-web mapping services for the USGS national map
+or the USGS national map: 
 
 
 ~~~r
@@ -59,7 +60,7 @@ leaflet() %>%
 
 ===
 
-mini map
+In addition to tile layers and markers, many other map features can be added and customized with `add*()` functions. Refer to the help documentation (eg. `?addMiniMap`) to see all of the customization options and learn the default settings. 
 
 
 ~~~r
@@ -73,12 +74,10 @@ leaflet() %>%
 
 ===
 
-extra features
+Even more new features coming soon! 
 
 
 ~~~r
-# graticules, daynight shading, measuring tool
-
 leaflet() %>% 
   setView(lng = -111.846061, lat = 36.115847, zoom = 12) %>%
   addWMSTiles(nhd_wms_url, layers = "0") %>%
@@ -93,7 +92,7 @@ leaflet() %>%
 
 ===
 
-custom javascript
+Trigger custom javascript logic with *EasyButtons*
 
 
 ~~~r
