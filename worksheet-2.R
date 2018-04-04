@@ -2,9 +2,10 @@
 # leaflet with data
 
 library(leaflet)
-library(sf)
-library(raster)
-library(dplyr)
+library(sf) # read in points and polygons
+library(raster) # read in raster
+library(dplyr) # filter sf objects
+library(RColorBrewer) # for brewer.pal.info
 
 # read in water quality portal points
 wqp_sites <- ...("data/wqp_sites")
