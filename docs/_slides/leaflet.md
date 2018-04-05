@@ -61,6 +61,28 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
+~~~
+PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+~~~
+{:.output}
+
+~~~
+Warning in normalizePath(f2): path[1]="./webshotee5d47670fa3.png": No such
+file or directory
+~~~
+{:.output}
+
+~~~
+Warning in file(con, "rb"): cannot open file './webshotee5d47670fa3.png':
+No such file or directory
+~~~
+{:.output}
+
+~~~
+Error in file(con, "rb"): cannot open the connection
+~~~
+{:.output}
+
 
 ===
 
