@@ -13,7 +13,7 @@ Maps will appear in RStudio's Viewer pane, and can also be viewed in a web brows
 
 The `leaflet()` function creates an empty leaflet map to which layers can be added using the pipe (`%>%`) operator. The `addTiles()` functions adds a base tiled map; by default, it uses tiles made from [OpenStreetMap](https://www.openstreetmap.org/) data. Center and set an initial zoom level the map with `setView()`. Switch to the "Viewer" tab in RStudio to see the result.
 
-```{r leaflet_base, title = "worksheet-1.R", eval = FALSE}
+```{r leaflet_base, title = "worksheet-1.R", eval = TRUE}
 library(leaflet)
 
 leaflet() %>%
@@ -26,7 +26,7 @@ leaflet() %>%
 
 Add a new layer with a point marker using `addMarkers()`, with a custom message that displays when the marker is clicked. 
 
-```{r leaflet_marker, title = "worksheet-1.R", eval = FALSE}
+```{r leaflet_marker, title = "worksheet-1.R", eval = TRUE}
 leaflet() %>%
   addTiles() %>%
   setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%

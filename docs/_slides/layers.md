@@ -23,6 +23,11 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
+
 
 ===
 
@@ -42,6 +47,11 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
+
 
 ===
 
@@ -56,6 +66,11 @@ leaflet() %>%
   addWMSTiles(nhd_wms_url, layers = "0")
 ~~~
 {:.text-document title="worksheet-1.R"}
+
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
 
 
 Thanks USGS! Check out more USGS R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
@@ -72,6 +87,11 @@ leaflet() %>%
   addMiniMap(zoomLevelOffset = -4)
 ~~~
 {:.text-document title="worksheet-1.R"}
+
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
 
 
 ===
@@ -90,6 +110,11 @@ leaflet() %>%
   addScaleBar()
 ~~~
 {:.text-document title="worksheet-1.R"}
+
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
 
 
 

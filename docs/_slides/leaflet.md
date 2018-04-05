@@ -23,6 +23,11 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
+
 
 ===
 
@@ -36,6 +41,11 @@ leaflet() %>%
   addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
 ~~~
 {:.text-document title="worksheet-1.R"}
+
+~~~
+Error in loadNamespace(name): there is no package called 'webshot'
+~~~
+{:.output}
 
 
 ===
