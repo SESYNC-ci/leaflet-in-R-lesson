@@ -16,6 +16,7 @@ The `leaflet()` function creates an empty leaflet map to which layers can be add
 
 ~~~r
 library(leaflet)
+library(webshot)
 
 leaflet() %>%
     addTiles() %>%
@@ -24,7 +25,24 @@ leaflet() %>%
 {:.text-document title="worksheet-1.R"}
 
 ~~~
-Error in loadNamespace(name): there is no package called 'webshot'
+PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+~~~
+{:.output}
+
+~~~
+Warning in normalizePath(f2): path[1]="./webshot11db9685dad44.png": No such
+file or directory
+~~~
+{:.output}
+
+~~~
+Warning in file(con, "rb"): cannot open file './webshot11db9685dad44.png':
+No such file or directory
+~~~
+{:.output}
+
+~~~
+Error in file(con, "rb"): cannot open the connection
 ~~~
 {:.output}
 

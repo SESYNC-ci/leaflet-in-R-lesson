@@ -15,6 +15,7 @@ The `leaflet()` function creates an empty leaflet map to which layers can be add
 
 ```{r leaflet_base, title = "worksheet-1.R"}
 library(leaflet)
+library(webshot)
 
 leaflet() %>%
     addTiles() %>%
