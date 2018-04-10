@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaflet in R</title>
+<meta name="description" content="Make interactive maps in R using the leaflet package">
+<link rel="canonical" href="http://cyberhelp.sesync.org/leaflet-in-R-lesson/course/archive.html">
+<link rel="stylesheet" href="https://cdn.rawgit.com/sesync-ci/lesson-style/v1.3/docs/css/default.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/sesync-ci/lesson-style/v1.3/docs/css/static.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="page-content">
+      <div class="wrapper">
+        
+        
+<h1 style="text-transform: none;" id="leaflet-in-r">Leaflet in R</h1>
+
+<p>Lesson 8 with <em>Kelly Hondula</em></p>
+
+<h2 id="contents">Contents</h2>
+
+<ul>
+  <li><a href="#/slides/intro">Introduction</a></li>
+  <li><a href="#/slides/leaflet">What’s a Leaflet?</a></li>
+  <li><a href="#/slides/layers">Layers Control</a></li>
+  <li><a href="#/slides/datalayers">Add data Layers</a></li>
+  <li><a href="#/slides/leafletshiny">Leaflet in shiny</a></li>
+  <li><a href="#/slides/leafletproxy">Leaflet in shiny for people in a hurry</a></li>
+  <li><a href="#/slides/conclude">Summary</a></li>
+</ul>
+
+<hr />
+
+<p><a name="/slides/intro"></a></p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p><a href="http://leafletjs.com/">Leaflet</a> is a powerful open-source Javascript library that powers interactive maps on the web. This lesson provides an overview of using <code class="highlighter-rouge">leaflet</code>, the namesake package in R, to create <a href="https://www.planet.com/docs/guides/slippy-maps/">“slippy”</a> Leaflet maps from R and integrate them into RShiny apps.</p>
+
+<p>Like static plotting and mapping, there lots of options for interactive mapping in R. The <code class="highlighter-rouge">leaflet</code> package is actively maintained by RStudio. Some other packages for interactive maps that build off of leaflet, or other interactive plotting libraries, are: <code class="highlighter-rouge">tmap</code>, <code class="highlighter-rouge">ggiraph</code>, <code class="highlighter-rouge">rbokeh</code>, <code class="highlighter-rouge">plotly</code>, <code class="highlighter-rouge">highcharter</code>, <code class="highlighter-rouge">mapedit</code>, <code class="highlighter-rouge">mapview</code>, <code class="highlighter-rouge">leaflet.extras</code>, and <code class="highlighter-rouge">leaflet.esri</code>.</p>
+
+<h2 id="objectives-for-this-lesson">Objectives for this lesson</h2>
+
+<ul>
+  <li>Learn how to build leaflet maps with background tiles and layered features</li>
+  <li>Customize the appearance of point and shape layers using data attributes</li>
+  <li>Get started using leaflet objects in RShiny</li>
+</ul>
+
+<p class="ToS"><a href="#/slides/intro">Top of Section</a></p>
+
+<hr />
+
+<p><a name="/slides/leaflet"></a></p>
+
+<h2 id="whats-a-leaflet">What’s a Leaflet?</h2>
+
+<p>leaflet produces maps have controls to zoom, pan and toggle layers on and off, and can combine local data with base layers from web mapping services.</p>
+
+<p>Maps will appear in RStudio’s Viewer pane, and can also be viewed in a web browser and saved as html files.</p>
+
+<p>The <code class="highlighter-rouge">leaflet()</code> function creates an empty leaflet map to which layers can be added using the pipe (<code class="highlighter-rouge">%&gt;%</code>) operator. The <code class="highlighter-rouge">addTiles()</code> functions adds a base tiled map; by default, it uses tiles made from <a href="https://www.openstreetmap.org/">OpenStreetMap</a> data. Center and set an initial zoom level the map with <code class="highlighter-rouge">setView()</code>. Switch to the “Viewer” tab in RStudio to see the result.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">leaflet</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">webshot</span><span class="p">)</span><span class="w">
+
+</span><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+</code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning in normalizePath(f2): path[1]="./webshot11db9685dad44.png": No such
+file or directory
+</code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning in file(con, "rb"): cannot open file './webshot11db9685dad44.png':
+No such file or directory
+</code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in file(con, "rb"): cannot open the connection
+</code></pre></div></div>
+
+<p>Add a new layer with a point marker using <code class="highlighter-rouge">addMarkers()</code>, with a custom message that displays when the marker is clicked.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMarkers</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">popup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"I am here!"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in loadNamespace(name): there is no package called 'webshot'
+</code></pre></div></div>
+
+<p>In addition to OSM, there are many other data providers that make sets of <a href="https://wiki.openstreetmap.org/wiki/Tiles">tiles</a> available to use as basemaps. There is a R list object called <code class="highlighter-rouge">providers</code> with the names of these options.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addProviderTiles</span><span class="p">(</span><span class="n">providers</span><span class="o">$</span><span class="n">Esri.WorldImagery</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMarkers</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">popup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"I am here!"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+</code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning in normalizePath(f2): path[1]="./webshotee5d47670fa3.png": No such
+file or directory
+</code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning in file(con, "rb"): cannot open file './webshotee5d47670fa3.png':
+No such file or directory
+</code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in file(con, "rb"): cannot open the connection
+</code></pre></div></div>
+
+<p>Zoom all the way out. What projection does it look like this map is using? 
+<img src="/leaflet-in-R-lesson/images/dragons.png" alt="dragons" height="200%" /></p>
+
+<p>Read more about the <a href="https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping">intracacies of web mercator</a> e.g. why it is <a href="https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator">considered unsuitable for geospatial intelligence purposes</a>. Learn how to define a custom leafletCRS <a href="https://rstudio.github.io/leaflet/projections.html">here</a> or see <a href="http://rpubs.com/bhaskarvk/leaflet-polarmaps">examples</a>.</p>
+
+<p class="ToS"><a href="#/slides/leaflet">Top of Section</a></p>
+
+<hr />
+
+<p><a name="/slides/layers"></a></p>
+
+<h2 id="layers-control">Layers Control</h2>
+
+<p>Layers can be assigned to named <strong>groups</strong> which can be toggled on and off by the user. <em>baseGroups</em> are selected with radio buttons (can only choose one at a time), and <em>overlayGroups</em> get checkboxes.</p>
+
+<p>To implement layers control, add group names to individual layers with the <code class="highlighter-rouge">group =</code> argument <strong>AND</strong> add the layers control layer using <code class="highlighter-rouge">addLayersControl()</code>.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"OSM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addProviderTiles</span><span class="p">(</span><span class="n">providers</span><span class="o">$</span><span class="n">Esri.WorldImagery</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Esri World Imagery"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMarkers</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">popup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"I am here!"</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SESYNC"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addLayersControl</span><span class="p">(</span><span class="n">baseGroups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"OSM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Esri World Imagery"</span><span class="p">),</span><span class="w"> 
+                   </span><span class="n">overlayGroups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"SESYNC"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layersControlOptions</span><span class="p">(</span><span class="n">collapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in loadNamespace(name): there is no package called 'webshot'
+</code></pre></div></div>
+
+<p>Another type of tile layer is avaible through many web mapping services (WMS), such as the real-time weather radar data from the <a href="https://mesonet.agron.iastate.edu/ogc/">Iowa Environmental Mesonet</a>.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addWMSTiles</span><span class="p">(</span><span class="w">
+    </span><span class="s2">"http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi"</span><span class="p">,</span><span class="w">
+    </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"nexrad-n0r-900913"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WMSTileOptions</span><span class="p">(</span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span><span class="w"> </span><span class="n">transparent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w">
+    </span><span class="n">attribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Weather data © 2012 IEM Nexrad"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in loadNamespace(name): there is no package called 'webshot'
+</code></pre></div></div>
+
+<p>or USGS topographic maps from the <a href="https://viewer.nationalmap.gov/help/HowTo.htm">National Map</a>:</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">nhd_wms_url</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer"</span><span class="w">
+
+</span><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-111.846061</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">36.115847</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addWMSTiles</span><span class="p">(</span><span class="n">nhd_wms_url</span><span class="p">,</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in loadNamespace(name): there is no package called 'webshot'
+</code></pre></div></div>
+
+<p>Thanks USGS! Check out more USGS R packages for accessing, processing, and modeling data on <a href="https://github.com/USGS-R">github</a>.</p>
+
+<p>In addition to tile layers and markers, many other map features can be added and customized with <code class="highlighter-rouge">add*()</code> functions. Refer to the help documentation (eg. <code class="highlighter-rouge">?addMiniMap</code>) to see all of the customization options and learn the default settings.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-111.846061</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">36.115847</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addWMSTiles</span><span class="p">(</span><span class="n">nhd_wms_url</span><span class="p">,</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMiniMap</span><span class="p">(</span><span class="n">zoomLevelOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-4</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in loadNamespace(name): there is no package called 'webshot'
+</code></pre></div></div>
+
+<p>Add layers with common map elements and customize them with <code class="highlighter-rouge">add*</code>. Even more new features coming soon!</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-111.846061</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">36.115847</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addWMSTiles</span><span class="p">(</span><span class="n">nhd_wms_url</span><span class="p">,</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"0"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMiniMap</span><span class="p">(</span><span class="n">zoomLevelOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-4</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addGraticule</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTerminator</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">addMeasure</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addScaleBar</span><span class="p">()</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Error in loadNamespace(name): there is no package called 'webshot'
+</code></pre></div></div>
+
+<p>Trigger custom javascript logic with <em>EasyButtons</em>.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-1.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">addEasyButton</span><span class="p">(</span><span class="n">easyButton</span><span class="p">(</span><span class="w">
+    </span><span class="n">icon</span><span class="o">=</span><span class="s2">"fa-crosshairs"</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Locate me"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">onClick</span><span class="o">=</span><span class="n">JS</span><span class="p">(</span><span class="s2">"function(btn, map){ map.locate({setView: true}); }"</span><span class="p">)))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The fine print: Note that RStudio’s viewer pane or external window does not always behave the same as a web brower.</p>
+
+<p class="ToS"><a href="#/slides/layers">Top of Section</a></p>
+
+<hr />
+
+<p><a name="/slides/datalayers"></a></p>
+
+<h2 id="add-data-layers">Add data Layers</h2>
+
+<p>Spatial objects (points, lines, polygons, rasters) in your R environment can also be added as map layers, provided that they have a CRS defined with a datum. Leaflet will try to make the necessary trasnformation to display your data in <a href="https://epsg.io/3857">EPSG:3857</a>.</p>
+
+<p>Read in data using sf and raster packages. Points are from the <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016WR019993">Water Quality Portal</a> <a href="https://github.com/SESYNC-ci/leaflet-in-R-lesson/blob/master/get_wqp_sites.R">accessed via</a> the <code class="highlighter-rouge">dataRetrieval</code> package. County boundaries are from the <a href="https://www.census.gov/geo/maps-data/data/tiger-line.html">Census</a> and <a href="https://water.usgs.gov/maps.html">Watershed boundaries</a> are from USGS.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">wqp_sites</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="s2">"data/wqp_sites"</span><span class="p">)</span><span class="w"> 
+</span><span class="n">counties_md</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="s2">"data/cb_2016_us_county_5m"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">STATEFP</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"24"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">st_transform</span><span class="p">(</span><span class="m">4326</span><span class="p">)</span><span class="w">
+</span><span class="n">wbd_reg2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">st_read</span><span class="p">(</span><span class="s2">"data/huc250k/"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">REG</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"02"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">st_transform</span><span class="p">(</span><span class="m">4326</span><span class="p">)</span><span class="w">
+</span><span class="n">nlcd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">raster</span><span class="p">(</span><span class="s2">"data/nlcd_crop.grd"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Add a polygons layer, being sure to specify the <code class="highlighter-rouge">data = </code> argument. All of the <code class="highlighter-rouge">add*</code> layers have “map” as the first argument, facilitating use of the pipe (<code class="highlighter-rouge">%&gt;%</code>) operator, but <code class="highlighter-rouge">data</code> is not the second argument so it must be named.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counties_md</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Customize Polygons with border and fill colors and opacities.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counties_md</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"green"</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">fillColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">fillOpacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Attributes can be referred to using formula syntax <code class="highlighter-rouge">~</code> to access attribute data from an <code class="highlighter-rouge">sf</code> object or <code class="highlighter-rouge">Spatial*DataFrame</code>. What is the difference between a popup and a label?</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counties_md</span><span class="p">,</span><span class="w"> </span><span class="n">popup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"click"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counties_md</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hover"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addLayersControl</span><span class="p">(</span><span class="n">baseGroups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"click"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hover"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>For numeric or categorical data, create a color palette from <a href="http://colorbrewer2.org/#">colorbrewer</a> using <code class="highlighter-rouge">colorNumeric()</code>, <code class="highlighter-rouge">colorFactor()</code>, <code class="highlighter-rouge">colorBin()</code>, or <code class="highlighter-rouge">colorQuantile()</code>. <code class="highlighter-rouge">brewer.pal.info</code> is a data.frame containing information about the palettes.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">fillColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">pal</span><span class="p">(</span><span class="n">AREA</span><span class="p">),</span><span class="w"> 
+              </span><span class="n">fillOpacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Add a legend (which will likely duplicate arguments from the layer that used that palette).</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">fillColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">pal</span><span class="p">(</span><span class="n">AREA</span><span class="p">),</span><span class="w"> 
+              </span><span class="n">fillOpacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addLegend</span><span class="p">(</span><span class="n">pal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pal</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="o">$</span><span class="n">AREA</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Watershed Area"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Add points as markers, circle markers, or <a href="https://rstudio.github.io/leaflet/markers.html">customized icons</a>.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMarkers</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wqp_sites</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">,],</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"markers"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addCircleMarkers</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wqp_sites</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">,],</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"circlemarkers"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addLayersControl</span><span class="p">(</span><span class="n">baseGroups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"markers"</span><span class="p">,</span><span class="w"> </span><span class="s2">"circlemarkers"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Display a different number of markers at each zoom level using <code class="highlighter-rouge">clusterOptions</code> on markers or circle markers layers</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addMarkers</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wqp_sites</span><span class="p">,</span><span class="w"> </span><span class="n">clusterOptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">markerClusterOptions</span><span class="p">(),</span><span class="w">
+             </span><span class="n">popup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">paste</span><span class="p">(</span><span class="n">MntrnLN</span><span class="p">,</span><span class="w"> </span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="n">OrgnztI</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Rasters can be slow to load. Be patient but also check out the <code class="highlighter-rouge">maxBytes =</code> argument if need be.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-2.R"><div class="highlight"><pre class="highlight"><code><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addTiles</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">addRasterImage</span><span class="p">(</span><span class="n">nlcd</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p class="ToS"><a href="#/slides/datalayers">Top of Section</a></p>
+
+<hr />
+
+<p><a name="/slides/leafletshiny"></a></p>
+
+<h2 id="leaflet-in-shiny">Leaflet in shiny</h2>
+
+<p>Add even more interactivity and customization to leaflet maps by incorporating them into <a href="https://shiny.rstudio.com/">RShiny</a> applications.</p>
+
+<p>As you may have learned in the <a href="https://cyberhelp.sesync.org/basic-Shiny-lesson/">Shiny lesson</a>, the app comprises a <em>user interface</em> object that defines how it appears, and a <em>server</em> object that defines how it behaves.</p>
+
+<p>The ui and server interact through <code class="highlighter-rouge">*input</code> and <code class="highlighter-rouge">*output</code> objects such as input widgets, plots, buttons, tables, etc. Leaflet maps in Shiny are constructed with <code class="highlighter-rouge">renderLeaflet()</code> and displayed in the output using <code class="highlighter-rouge">leafletOutput()</code>.</p>
+
+<p><img src="/leaflet-in-R-lesson/images/shiny-arrows.png" alt="shinyarrows" /></p>
+
+<p>Define an output object called “map” in the server function.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-3.R"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="n">output</span><span class="o">$</span><span class="n">map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">renderLeaflet</span><span class="p">({</span><span class="w">
+    </span><span class="n">leaflet</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">addTiles</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"OSM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">addProviderTiles</span><span class="p">(</span><span class="n">providers</span><span class="o">$</span><span class="n">NASAGIBS.ModisTerraTrueColorCR</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Modis"</span><span class="p">,</span><span class="w">
+                       </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">providerTileOptions</span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2018-01-05"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">setView</span><span class="p">(</span><span class="n">lng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-76.505206</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">38.9767231</span><span class="p">,</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">addLayersControl</span><span class="p">(</span><span class="n">baseGroups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Modis"</span><span class="p">,</span><span class="w"> </span><span class="s2">"OSM"</span><span class="p">),</span><span class="w">
+                       </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layersControlOptions</span><span class="p">(</span><span class="n">collapsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+      </span><span class="p">)</span><span class="w">
+  </span><span class="p">})</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Define the ui to include the output called “map”.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-3.R"><div class="highlight"><pre class="highlight"><code><span class="n">ui</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fluidPage</span><span class="p">(</span><span class="w">
+  </span><span class="n">leafletOutput</span><span class="p">(</span><span class="s2">"map"</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">800</span><span class="p">)</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Add a panel to the ui that will let users choose a calendar date.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-3.R"><div class="highlight"><pre class="highlight"><code><span class="n">ui</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fluidPage</span><span class="p">(</span><span class="w">
+    </span><span class="n">leafletOutput</span><span class="p">(</span><span class="s2">"map"</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">800</span><span class="p">),</span><span class="w">
+      </span><span class="n">absolutePanel</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">draggable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+              </span><span class="n">dateInput</span><span class="p">(</span><span class="s2">"dateinput"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Imagery Date"</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2018-03-28"</span><span class="w">
+                    </span><span class="p">)</span><span class="w">
+</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Use the <code class="highlighter-rouge">dateinput</code> input object in the Provider Tiles layer.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-3.R"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="n">addProviderTiles</span><span class="p">(</span><span class="n">providers</span><span class="o">$</span><span class="n">NASAGIBS.ModisTerraTrueColorCR</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Modis"</span><span class="p">,</span><span class="w">
+                       </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">providerTileOptions</span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">dateinput</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p class="ToS"><a href="#/slides/leafletshiny">Top of Section</a></p>
+
+<hr />
+
+<p><a name="/slides/leafletproxy"></a></p>
+
+<h2 id="leaflet-in-shiny-for-people-in-a-hurry">Leaflet in shiny for people in a hurry</h2>
+
+<p>Rendering maps can be slow. Use <code class="highlighter-rouge">leafletProxy()</code> so the whole map doesn’t have to be re-drawn every time the user input is updated.</p>
+
+<p>Define a color palette in the server using colorNumeric and the user’s selection from the color brewer palettes (accessed via the row names of the brewer.pal.info data.frame).</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-4.R"><div class="highlight"><pre class="highlight"><code><span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colorNumeric</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">colors</span><span class="p">,</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="o">$</span><span class="n">AREA</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Run the app and zoom in or out. What happens when you change the color scheme?</p>
+
+<p>Instead of having the <code class="highlighter-rouge">input$</code> object referred to in the intial <code class="highlighter-rouge">renderLeaflet</code> definition in the server, move the “reactivity” to a <code class="highlighter-rouge">leafletProxy()</code> object in the server. Also redefine the initial palette in the renderLeaflet definition eg to “BrBG”.</p>
+
+<div class="language-r text-document highlighter-rouge" title="worksheet-8-4.R"><div class="highlight"><pre class="highlight"><code><span class="n">observe</span><span class="p">({</span><span class="w">
+    </span><span class="n">pal</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colorNumeric</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">colors</span><span class="p">,</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="o">$</span><span class="n">AREA</span><span class="p">)</span><span class="w">
+
+    </span><span class="n">leafletProxy</span><span class="p">(</span><span class="s2">"map"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">clearShapes</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">clearControls</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">addPolygons</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                  </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+                  </span><span class="n">fillColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">pal</span><span class="p">(</span><span class="n">AREA</span><span class="p">),</span><span class="w"> </span><span class="n">fillOpacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">
+                  </span><span class="n">popup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">HUC_NAME</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+      </span><span class="n">addLegend</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottomright"</span><span class="p">,</span><span class="w"> </span><span class="n">pal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pal</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wbd_reg2</span><span class="o">$</span><span class="n">AREA</span><span class="p">)</span><span class="w">
+
+  </span><span class="p">})</span><span class="w">
+</span></code></pre></div></div>
+
+<p class="ToS"><a href="#/slides/leafletproxy">Top of Section</a></p>
+
+<hr />
+
+<p><a name="/slides/conclude"></a></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Main functions for leaflet maps</p>
+
+<ul>
+  <li><strong>View window</strong> - <code class="highlighter-rouge">setView(lat, lon, zoom)</code> <code class="highlighter-rouge">fitBounds()</code> <code class="highlighter-rouge">setMaxBounds()</code></li>
+  <li><strong>Background tiles</strong> - <code class="highlighter-rouge">addTiles()</code> <code class="highlighter-rouge">addProviderTiles()</code> <code class="highlighter-rouge">addWMSTiles()</code></li>
+  <li><strong>Point layers</strong> - <code class="highlighter-rouge">addMarkers()</code> <code class="highlighter-rouge">addCircleMarkers()</code> <code class="highlighter-rouge">addAwesomeMarkers()</code> <code class="highlighter-rouge">addLabelOnlyMarkers()</code></li>
+  <li><strong>Shape layers</strong> - <code class="highlighter-rouge">addPolylines()</code> <code class="highlighter-rouge">addCircles()</code> <code class="highlighter-rouge">addRectangles()</code> <code class="highlighter-rouge">addPolygons()</code></li>
+  <li><strong>Images</strong> - <code class="highlighter-rouge">addRasterImage()</code></li>
+  <li><strong>Common features</strong> - <code class="highlighter-rouge">addLegend()</code> <code class="highlighter-rouge">addLayersControl()</code> <code class="highlighter-rouge">addControl()</code></li>
+</ul>
+
+<p>For Shiny apps</p>
+
+<ul>
+  <li><code class="highlighter-rouge">renderLeaflet()</code> objects in the server and use them in the ui with <code class="highlighter-rouge">leafletOutput()</code></li>
+  <li>Use <code class="highlighter-rouge">leafletProxy()</code> to avoid re-rendering the whole map object</li>
+</ul>
+
+<p class="ToS"><a href="#/slides/conclude">Top of Section</a></p>
+
+<hr />
+
+
+
+      </div>
+    </div>
+  <script>
+ var collection = document.getElementsByClassName('rlib');
+ for (var i = 0; i < collection.length; i++) {
+     var a = collection[i];
+     a.href = 'https://cran.r-project.org/package=' + a.innerText;
+ };
+ var collection = document.getElementsByClassName('pylib');
+ for (var i = 0; i < collection.length; i++) {
+     var a = collection[i];
+     a.href = 'https://pypi.python.org/pypi/' + a.innerText;
+ };
+</script>
+
+  </body>
+</html>
