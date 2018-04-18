@@ -52,7 +52,7 @@ leaflet() %>%
 
 ```
 
-Thanks USGS! Check out more USGS R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
+Thanks USGS! Check out more USGS [Web Mapping Services](https://viewer.nationalmap.gov/services/), and R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
 
 ===
 

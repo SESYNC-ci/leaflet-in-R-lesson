@@ -23,10 +23,8 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
-~~~
-Error in loadNamespace(name): there is no package called 'webshot'
-~~~
-{:.output}
+![plot of chunk leaflet_layers]({{ site.baseurl }}/images/layers/leaflet_layers-1.png)
+{:.captioned}
 
 
 ===
@@ -47,10 +45,8 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
-~~~
-Error in loadNamespace(name): there is no package called 'webshot'
-~~~
-{:.output}
+![plot of chunk leaflet_wms]({{ site.baseurl }}/images/layers/leaflet_wms-1.png)
+{:.captioned}
 
 
 ===
@@ -67,13 +63,11 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
-~~~
-Error in loadNamespace(name): there is no package called 'webshot'
-~~~
-{:.output}
+![plot of chunk leaflet_topo]({{ site.baseurl }}/images/layers/leaflet_topo-1.png)
+{:.captioned}
 
 
-Thanks USGS! Check out more USGS R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
+Thanks USGS! Check out more USGS [Web Mapping Services](https://viewer.nationalmap.gov/services/), and R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
 
 ===
 
@@ -88,10 +82,8 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
-~~~
-Error in loadNamespace(name): there is no package called 'webshot'
-~~~
-{:.output}
+![plot of chunk leaflet_mm]({{ site.baseurl }}/images/layers/leaflet_mm-1.png)
+{:.captioned}
 
 
 ===
@@ -111,10 +103,8 @@ leaflet() %>%
 ~~~
 {:.text-document title="worksheet-1.R"}
 
-~~~
-Error in loadNamespace(name): there is no package called 'webshot'
-~~~
-{:.output}
+![plot of chunk leaflet_extras]({{ site.baseurl }}/images/layers/leaflet_extras-1.png)
+{:.captioned}
 
 
 
