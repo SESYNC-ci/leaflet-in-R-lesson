@@ -13,7 +13,7 @@ Maps will appear in RStudio's Viewer pane, and can also be viewed in a web brows
 
 The `leaflet()` function creates an empty leaflet map to which layers can be added using the pipe (`%>%`) operator. The `addTiles()` functions adds a base tiled map; by default, it uses tiles made from [OpenStreetMap](https://www.openstreetmap.org/) data. Center and set an initial zoom level the map with `setView()`. Switch to the "Viewer" tab in RStudio to see the result.
 
-```{r leaflet_base, title = "worksheet-1.R", results='asis'}
+```{r leaflet_base, title = "{{ site.handouts[0] }}"}
 library(leaflet)
 library(webshot)
 
@@ -27,7 +27,7 @@ leaflet() %>%
 
 Add a new layer with a point marker using `addMarkers()`, with a custom message that displays when the marker is clicked. 
 
-```{r leaflet_marker, title = "worksheet-1.R", eval = TRUE}
+```{r leaflet_marker, title = "{{ site.handouts[0] }}"}
 leaflet() %>%
   addTiles() %>%
   setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
@@ -39,7 +39,7 @@ leaflet() %>%
 
 In addition to OSM, there are many other data providers that make sets of [tiles](https://wiki.openstreetmap.org/wiki/Tiles) available to use as basemaps. There is a R list object called `providers` with the names of these options. 
 
-```{r leaflet_providertiles, title = "worksheet-1.R", eval = TRUE}
+```{r leaflet_providertiles, title = "{{ site.handouts[0] }}"}
 leaflet() %>%
   addProviderTiles(providers$Esri.WorldImagery) %>%
   setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%

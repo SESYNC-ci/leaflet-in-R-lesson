@@ -30,7 +30,7 @@ Define an output object called "map" in the server function.
       )
   })
 ~~~
-{:.text-document title="worksheet-3.R"}
+{:.text-document title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -43,7 +43,7 @@ ui <- fluidPage(
   leafletOutput("map", height = 800)
 )
 ~~~
-{:.text-document title="worksheet-3.R"}
+{:.text-document title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -59,7 +59,7 @@ ui <- fluidPage(
                     )
 ))
 ~~~
-{:.text-document title="worksheet-3.R"}
+{:.text-document title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -71,5 +71,5 @@ Use the `dateinput` input object in the Provider Tiles layer.
  addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
                        options = providerTileOptions(time = input$dateinput))
 ~~~
-{:.text-document title="worksheet-3.R"}
+{:.text-document title="{{ site.handouts[2] }}"}
 

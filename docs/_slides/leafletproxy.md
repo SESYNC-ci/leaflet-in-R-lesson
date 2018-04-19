@@ -13,7 +13,7 @@ Define a color palette in the server using colorNumeric and the user's selection
 ~~~r
 pal <- colorNumeric(input$colors, wbd_reg2$AREA)
 ~~~
-{:.text-document title="worksheet-4.R"}
+{:.text-document title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -39,6 +39,5 @@ observe({
 
   })
 ~~~
-{:.text-document title="worksheet-4.R"}
-
+{:.text-document title="{{ site.handouts[2] }}"}
 

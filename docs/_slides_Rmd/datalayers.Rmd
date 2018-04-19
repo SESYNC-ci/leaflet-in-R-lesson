@@ -12,7 +12,7 @@ Spatial objects (points, lines, polygons, rasters) in your R environment can als
 
 Read in data using sf and raster packages. Points are from the [Water Quality Portal](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016WR019993) [accessed via](https://github.com/SESYNC-ci/leaflet-in-R-lesson/blob/master/get_wqp_sites.R) the `dataRetrieval` package. County boundaries are from the [Census](https://www.census.gov/geo/maps-data/data/tiger-line.html) and [Watershed boundaries](https://water.usgs.gov/maps.html) are from USGS.
 
-```{r read_data, title = "worksheet-2.R", eval = FALSE}
+```{r read_data, title = "{{ site.handouts[1] }}"}
 library(sf)
 library(raster)
 library(dplyr)
@@ -28,7 +28,7 @@ nlcd <- raster("data/nlcd_crop.grd")
 
 Add a polygons layer, being sure to specify the `data = ` argument. All of the `add*` layers have "map" as the first argument, facilitating use of the pipe (`%>%`) operator, but `data` is not the second argument so it must be named. 
 
-```{r leaflet_polygons, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_polygons, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = counties_md)
@@ -39,7 +39,7 @@ leaflet() %>%
 
 Customize Polygons with border and fill colors and opacities.
 
-```{r leaflet_polygonscolor, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_polygonscolor, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = counties_md, 
@@ -54,7 +54,7 @@ leaflet() %>%
 
 Attributes can be referred to using formula syntax `~` to access attribute data from an `sf` object or `Spatial*DataFrame`. What is the difference between a popup and a label?
 
-```{r leaflet_popvhov, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_popvhov, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = counties_md, popup = ~NAME, group = "click") %>%
@@ -68,7 +68,7 @@ leaflet() %>%
 
 For numeric or categorical data, create a color palette from [colorbrewer](http://colorbrewer2.org/#) using `colorNumeric()`, `colorFactor()`, `colorBin()`, or `colorQuantile()`. `brewer.pal.info` is a data.frame containing information about the palettes.
 
-```{r leaflet_pals, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_pals, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = wbd_reg2, 
@@ -82,7 +82,7 @@ leaflet() %>%
 
 Add a legend (which will likely duplicate arguments from the layer that used that palette). 
 
-```{r leaflet_legend, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_legend, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = wbd_reg2, 
@@ -97,7 +97,7 @@ leaflet() %>%
 
 Add points as markers, circle markers, or [customized icons](https://rstudio.github.io/leaflet/markers.html).
 
-```{r leaflet_pts, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_pts, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addMarkers(data = wqp_sites[1:1000,], group = "markers") %>%
@@ -109,7 +109,7 @@ leaflet() %>%
 
 Display a different number of markers at each zoom level using `clusterOptions` on markers or circle markers layers
 
-```{r leaflet_cluster, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_cluster, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addMarkers(data = wqp_sites, clusterOptions = markerClusterOptions(),
@@ -122,7 +122,7 @@ leaflet() %>%
 
 Rasters can be slow to load. Be patient but also check out the `maxBytes =` argument if need be. 
 
-```{r leaflet_raster, title = "worksheet-2.R", eval = FALSE}
+```{r leaflet_raster, title = "{{ site.handouts[1] }}"}
 leaflet() %>%
   addTiles() %>%
   addRasterImage(nlcd)

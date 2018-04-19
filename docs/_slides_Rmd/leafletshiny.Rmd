@@ -17,7 +17,7 @@ The ui and server interact through `*input` and `*output` objects such as input 
 
 Define an output object called "map" in the server function. 
 
-```{r leaflet_shiny1, title = "worksheet-3.R", eval = FALSE}
+```{r leaflet_shiny1, title = "{{ site.handouts[2] }}", eval = FALSE}
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles(group = "OSM") %>%
@@ -34,7 +34,7 @@ Define an output object called "map" in the server function.
 
 Define the ui to include the output called "map". 
 
-```{r leaflet_shiny2, title = "worksheet-3.R", eval = FALSE}
+```{r leaflet_shiny2, title = "{{ site.handouts[2] }}", eval = FALSE}
 ui <- fluidPage(
   leafletOutput("map", height = 800)
 )
@@ -44,7 +44,7 @@ ui <- fluidPage(
 
 Add a panel to the ui that will let users choose a calendar date. 
 
-```{r leaflet_shiny3, title = "worksheet-3.R", eval = FALSE}
+```{r leaflet_shiny3, title = "{{ site.handouts[2] }}", eval = FALSE}
 ui <- fluidPage(
     leafletOutput("map", height = 800),
       absolutePanel(top = 100, right = 10, draggable = TRUE,
@@ -57,7 +57,7 @@ ui <- fluidPage(
 
 Use the `dateinput` input object in the Provider Tiles layer.
 
-```{r leaflet_shiny4, title = "worksheet-3.R", eval = FALSE}
+```{r leaflet_shiny4, title = "{{ site.handouts[2] }}", eval = FALSE}
  addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
                        options = providerTileOptions(time = input$dateinput))
 ```
