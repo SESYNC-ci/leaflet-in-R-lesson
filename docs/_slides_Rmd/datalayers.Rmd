@@ -47,7 +47,6 @@ leaflet() %>%
               fillColor = "gray", 
               fillOpacity = 0.75, 
               weight = 1)
-
 ```
 
 ===
@@ -60,8 +59,6 @@ leaflet() %>%
   addPolygons(data = counties_md, popup = ~NAME, group = "click") %>%
   addPolygons(data = counties_md, label = ~NAME, group = "hover") %>%
   addLayersControl(baseGroups = c("click", "hover"))
-
-
 ```
 
 ===
@@ -69,6 +66,7 @@ leaflet() %>%
 For numeric or categorical data, create a color palette from [colorbrewer](http://colorbrewer2.org/#) using `colorNumeric()`, `colorFactor()`, `colorBin()`, or `colorQuantile()`. `brewer.pal.info` is a data.frame containing information about the palettes.
 
 ```{r leaflet_pals, title = "{{ site.handouts[1] }}"}
+pal <- colorNumeric("PiYG", wbd_reg2$AREA)
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = wbd_reg2, 
