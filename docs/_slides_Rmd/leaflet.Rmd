@@ -7,7 +7,7 @@ editor_options:
 
 leaflet produces maps have controls to zoom, pan and toggle layers on and off, and can combine local data with base layers from web mapping services. 
 
-Maps will appear in RStudio's Viewer pane, and can also be viewed in a web browser and saved as html files.
+Maps will appear in RStudio's Viewer pane, and can also be viewed in a web browser and saved as html files. 
 
 ===
 

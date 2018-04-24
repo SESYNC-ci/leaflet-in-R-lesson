@@ -5,6 +5,8 @@
 
 Rendering maps can be slow. Use `leafletProxy()` so the whole map doesn't have to be re-drawn every time the user input is updated. 
 
+Let's make a new shiny app that only changes one layer when a new value is selected from an input widget. See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo2/). 
+
 ===
 
 Define a color palette in the server using colorNumeric and the user's selection from the color brewer palettes (accessed via the row names of the brewer.pal.info data.frame).
@@ -22,7 +24,7 @@ Run the app and zoom in or out. What happens when you change the color scheme?
 
 ===
 
-Instead of having the `input$` object referred to in the intial `renderLeaflet` definition in the server, move the "reactivity" to a `leafletProxy()` object in the server. Also redefine the initial palette in the renderLeaflet definition eg to "BrBG". 
+Instead of having the `input$` object referred to in the intial `renderLeaflet` definition in the server, move the "reactivity" to a `leafletProxy()` object in the server. Also redefine the initial palette in the renderLeaflet definition eg to "BrBG". What happens without the `clearControls()` layer? 
 
 
 ~~~r

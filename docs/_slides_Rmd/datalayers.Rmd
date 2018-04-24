@@ -63,7 +63,7 @@ leaflet() %>%
 
 ===
 
-For numeric or categorical data, create a color palette from [colorbrewer](http://colorbrewer2.org/#) using `colorNumeric()`, `colorFactor()`, `colorBin()`, or `colorQuantile()`. `brewer.pal.info` is a data.frame containing information about the palettes.
+For numeric or categorical data, create a color palette from [colorbrewer](http://colorbrewer2.org/#) using `colorNumeric()`, `colorFactor()`, `colorBin()`, or `colorQuantile()`. 
 
 ```{r leaflet_pals, title = "{{ site.handouts[1] }}"}
 pal <- colorNumeric("PiYG", wbd_reg2$AREA)
@@ -75,6 +75,8 @@ leaflet() %>%
               weight =1)
 
 ```
+
+Load the RColorBrewer library to see information about palettes in the `brewer.pal.info` data.frame.
 
 ===
 
