@@ -61,7 +61,7 @@
   package: ~
   all_files: yes
 - name: leaflet-binding
-  version: 2.0.1
+  version: 2.0.2
   src: htmlwidgets
   meta: ~
   script: leaflet.js
@@ -81,7 +81,7 @@
   package: ~
   all_files: yes
 - name: leaflet-providers-plugin
-  version: 2.0.1
+  version: 2.0.2
   src: htmlwidgets/plugins/leaflet-providers-plugin
   meta: ~
   script: leaflet-providers-plugin.js
