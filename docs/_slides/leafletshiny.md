@@ -22,6 +22,7 @@ To see how this works, we'll build a shiny app with a leaflet map, where one of 
 Define an output object called "map" in the server function. 
 
 
+
 ~~~r
   output$map <- renderLeaflet({
     leaflet() %>%
@@ -34,7 +35,7 @@ Define an output object called "map" in the server function.
       )
   })
 ~~~
-{:.text-document title="{{ site.handouts[2] }}"}
+{:.text-document .no-eval title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -42,17 +43,19 @@ Define an output object called "map" in the server function.
 Define the ui to include the output called "map". 
 
 
+
 ~~~r
 ui <- fluidPage(
   leafletOutput("map", height = 800)
 )
 ~~~
-{:.text-document title="{{ site.handouts[2] }}"}
+{:.text-document .no-eval title="{{ site.handouts[2] }}"}
 
 
 ===
 
 Add a panel to the ui that will let users choose a calendar date. 
+
 
 
 ~~~r
@@ -63,7 +66,7 @@ ui <- fluidPage(
                     )
 ))
 ~~~
-{:.text-document title="{{ site.handouts[2] }}"}
+{:.text-document .no-eval title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -71,9 +74,10 @@ ui <- fluidPage(
 Use the `dateinput` input object in the Provider Tiles layer.
 
 
+
 ~~~r
  addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
                        options = providerTileOptions(time = input$dateinput))
 ~~~
-{:.text-document title="{{ site.handouts[2] }}"}
+{:.text-document .no-eval title="{{ site.handouts[2] }}"}
 

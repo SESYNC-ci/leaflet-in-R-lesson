@@ -12,10 +12,11 @@ Let's make a new shiny app that only changes one layer when a new value is selec
 Define a color palette in the server using colorNumeric and the user's selection from the color brewer palettes (accessed via the row names of the brewer.pal.info data.frame).
 
 
+
 ~~~r
 pal <- colorNumeric(input$colors, wbd_reg2$AREA)
 ~~~
-{:.text-document title="{{ site.handouts[2] }}"}
+{:.text-document .no-eval title="{{ site.handouts[2] }}"}
 
 
 ===
@@ -25,6 +26,7 @@ Run the app and zoom in or out. What happens when you change the color scheme?
 ===
 
 Instead of having the `input$` object referred to in the intial `renderLeaflet` definition in the server, move the "reactivity" to a `leafletProxy()` object in the server. Also redefine the initial palette in the renderLeaflet definition eg to "BrBG". What happens without the `clearControls()` layer? 
+
 
 
 ~~~r
@@ -41,5 +43,5 @@ observe({
 
   })
 ~~~
-{:.text-document title="{{ site.handouts[2] }}"}
+{:.text-document .no-eval title="{{ site.handouts[2] }}"}
 
