@@ -26,6 +26,10 @@ upstream: | .git/refs/remotes/upstream
 	git fetch upstream master:upstream
 	git merge --no-edit upstream
 	git push
+.git/refs/remotes/upstream:
+	git remote add upstream "git@github.com:sesync-ci/lesson-style.git"
+	git fetch upstream master:upstream
+	git branch -u upstream/master upstream
 
 # target to just update docs/_slides
 slides: $(SLIDES)
