@@ -13,7 +13,7 @@ As you may have learned in the [Shiny lesson](https://cyberhelp.sesync.org/basic
 
 The ui and server interact through `*input` and `*output` objects such as input widgets, plots, buttons, tables, etc. Leaflet maps in Shiny are constructed with `renderLeaflet()` and displayed in the output using `leafletOutput()`.
 
-![shinyarrows]({{ site.baseurl }}/images/shiny-arrows.png)
+![shinyarrows]({% include asset.html path="images/shiny-arrows.png" %})
 
 ===
 
@@ -35,7 +35,7 @@ Define an output object called "map" in the server function.
       )
   })
 ~~~
-{:.text-document .no-eval title="{{ site.handouts[2] }}"}
+{:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
 
 ===
@@ -49,7 +49,7 @@ ui <- fluidPage(
   leafletOutput("map", height = 800)
 )
 ~~~
-{:.text-document .no-eval title="{{ site.handouts[2] }}"}
+{:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
 
 ===
@@ -66,7 +66,7 @@ ui <- fluidPage(
                     )
 ))
 ~~~
-{:.text-document .no-eval title="{{ site.handouts[2] }}"}
+{:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
 
 ===
@@ -79,5 +79,5 @@ Use the `dateinput` input object in the Provider Tiles layer.
  addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
                        options = providerTileOptions(time = input$dateinput))
 ~~~
-{:.text-document .no-eval title="{{ site.handouts[2] }}"}
+{:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 

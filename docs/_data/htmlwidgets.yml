@@ -1,5 +1,5 @@
 - name: htmlwidgets
-  version: '1.2'
+  version: '1.3'
   src: htmlwidgets/www
   meta: ~
   script: htmlwidgets.js
@@ -69,7 +69,7 @@
   head: ~
   attachment: ~
   package: ~
-  all_files: yes
+  all_files: no
 - name: leaflet-providers
   version: 1.1.17
   src: htmlwidgets/lib/leaflet-providers

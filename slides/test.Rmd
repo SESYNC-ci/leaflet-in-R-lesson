@@ -4,7 +4,7 @@ excerpt: Test Leaflet
 
 An empty `leaflet()` map.
 
-```{r leaflet_base, title = "{{ site.handouts[0] }}", fig.cap = ""}
+```{r leaflet_base, handout = 0, fig.cap = ""}
 library(leaflet)
 
 leaflet() %>%
