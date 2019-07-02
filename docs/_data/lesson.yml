@@ -1,0 +1,26 @@
+title: Leaflet in R
+handouts:
+  - worksheet-1.R
+  - worksheet-2.R
+  - worksheet-3.R
+  - worksheet-4.R
+  - data/nlcd_crop.grd
+  - data/nlcd_crop.gri
+  - data/wqp_sites
+  - data/cb_2016_us_county_5m
+  - data/huc250k
+  - data/README.md
+tag: v0.2
+lesson: 7
+instructor: Kelly Hondula
+authors: 
+- Kelly Hondula
+- Ian Carroll
+sorter:
+  - intro
+  - leaflet
+  - layers
+  - datalayers
+  - leafletshiny
+  - leafletproxy
+  - conclude
