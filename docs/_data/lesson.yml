@@ -13,6 +13,9 @@ handouts:
 tag: v0.2
 lesson: 7
 instructor: Kelly Hondula
+lifecycle: stable # status for lifecycle badge
+badgecolor: green # color for lifecycle badge
+warning: false # whether to include note about lifecycle status
 authors: 
 - Kelly Hondula
 - Ian Carroll
