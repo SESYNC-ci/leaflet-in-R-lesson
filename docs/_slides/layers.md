@@ -123,7 +123,7 @@ leaflet() %>%
 Use *EasyButtons* to add simple buttons that trigger custom JavaScript logic.
 The function `addEasyButton()` adds a simple button to perform an action on your leaflet map.
 
-This map adds two buttons: one sets the map zoom level to 4, and the other attempts to locate you.
+This map adds one easy button to attempt to locate you.
 
 ~~~r
 leaflet() %>%
@@ -131,9 +131,6 @@ leaflet() %>%
   addEasyButton(easyButton(
     icon="fa-crosshairs", title = "Locate me", 
     onClick=JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
-  addEasyButton(easyButton(
-    icon="fa-globe", title="Zoom to Level 4",
-    onClick=JS("function(btn, map){ map.setZoom(4); }")))
 ~~~
 {:title="{{ site.data.lesson.handouts[0] }}" .text-document}
 <div class="figure">
