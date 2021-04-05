@@ -11,10 +11,16 @@ rand_lng = function(n = 10) rnorm(n, -93.65, .01)
 rand_lat = function(n = 10) rnorm(n, 42.0285, .01)
 map = leaflet() %>% addTiles() %>% addCircles(rand_lng(50), rand_lat(50), radius = runif(50, 10, 200))
 
-saveWidget(map, file="map.html")    # Save map asan html file
+saveWidget(map, file="map.html")    # Save map as an html file
 map
 
 ```
 
+You can now open `map.htlm` in your browser. `map.html` will open as a full screen html file in your browser. 
+
+You can upload the file wherever you like and then iframe to it if you want to embed it into a website:
+```html
+iframe src="map.html" frameborder="0" width="100%" height="300px"></iframe>
+```
 
 ===
