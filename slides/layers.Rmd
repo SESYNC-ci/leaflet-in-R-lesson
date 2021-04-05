@@ -83,15 +83,17 @@ leaflet() %>%
 
 ===
 
-Trigger custom javascript logic with *EasyButtons*. 
+Use *EasyButtons* to add simple buttons that trigger custom JavaScript logic.
+The function `addEasyButton()` adds a simple button to perform an action on your leaflet map.
 
-```{r leaflet_findme, handout = 0}
+This map adds one easy button to attempt to locate you.
+
+~~~r
 leaflet() %>%
   addTiles() %>% 
   addEasyButton(easyButton(
     icon="fa-crosshairs", title = "Locate me", 
-    onClick=JS("function(btn, map){ map.locate({setView: true}); }")))
-
-```
+    onClick=JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
+~~~
 
 The fine print: Note that RStudio's viewer pane or external window does not always behave the same as a web brower.
