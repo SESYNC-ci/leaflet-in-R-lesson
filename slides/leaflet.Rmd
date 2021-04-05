@@ -52,4 +52,4 @@ leaflet() %>%
 Zoom all the way out. What projection does it look like this map is using? 
 ![dragons]({% include asset.html path="images/dragons.png" %}){:height="200%"}
 
-Read more about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) e.g. why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). Learn how to define a custom leafletCRS [here](https://rstudio.github.io/leaflet/projections.html) or see [examples](http://rpubs.com/bhaskarvk/leaflet-polarmaps).
+Read more about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) e.g. why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). Learn how to define a custom leaflet CRS [here](https://rstudio.github.io/leaflet/projections.html).
