@@ -11,8 +11,8 @@ handouts:
   - data/huc250k
   - data/README.md
 tag: v0.2
-lesson: 7
-instructor: Kelly Hondula
+lesson: 4
+instructor: Andres Garcia
 lifecycle: stable # status for lifecycle badge
 badgecolor: green # color for lifecycle badge
 warning: false # whether to include note about lifecycle status
