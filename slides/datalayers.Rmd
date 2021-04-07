@@ -32,7 +32,6 @@ Add a polygons layer, being sure to specify the `data = ` argument. All of the `
 leaflet() %>%
   addTiles() %>%
   addPolygons(data = counties_md)
-
 ```
 
 ===
@@ -73,7 +72,6 @@ leaflet() %>%
               fillColor = ~pal(AREA), 
               fillOpacity = 1, 
               weight =1)
-
 ```
 
 Load the RColorBrewer library to see information about palettes in the `brewer.pal.info` data.frame.
@@ -90,7 +88,6 @@ leaflet() %>%
               fillOpacity = 0.9, 
               weight =1) %>%
   addLegend(pal = pal, values = wbd_reg2$AREA, title = "Watershed Area")
-
 ```
 
 ===
@@ -114,8 +111,6 @@ leaflet() %>%
   addTiles() %>%
   addMarkers(data = wqp_sites, clusterOptions = markerClusterOptions(),
              popup = ~paste(MntrnLN, ",", OrgnztI))
-
-
 ```
 
 ===
@@ -126,6 +121,4 @@ Rasters can be slow to load. Be patient but also check out the `maxBytes =` argu
 leaflet() %>%
   addTiles() %>%
   addRasterImage(nlcd)
-
 ```
-

@@ -19,7 +19,6 @@ leaflet() %>%
   addLayersControl(baseGroups = c("OSM", "Esri World Imagery"), 
                    overlayGroups = c("SESYNC"),
                    options = layersControlOptions(collapsed = FALSE))
-
 ```
 
 ===
@@ -44,11 +43,9 @@ or USGS topographic maps from the [National Map](https://viewer.nationalmap.gov/
 
 ```{r leaflet_topo, handout = 0}
 nhd_wms_url <- "https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WmsServer"
-
 leaflet() %>% 
   setView(lng = -111.846061, lat = 36.115847, zoom = 12) %>%
   addWMSTiles(nhd_wms_url, layers = "0")
-
 ```
 
 Thanks USGS! Check out more USGS [Web Mapping Services](https://viewer.nationalmap.gov/services/), and R packages for accessing, processing, and modeling data on [github](https://github.com/USGS-R).
@@ -77,7 +74,6 @@ leaflet() %>%
   addTerminator() %>% 
   addMeasure() %>%
   addScaleBar()
-
 ```
 
 

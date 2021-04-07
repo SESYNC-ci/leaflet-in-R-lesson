@@ -16,11 +16,9 @@ The `leaflet()` function creates an empty leaflet map to which layers can be add
 ```{r leaflet_base, handout = 0}
 library(leaflet)
 library(webshot)
-
 leaflet() %>%
     addTiles() %>%
     setView(lng = -76.505206, lat = 38.9767231, zoom = 7)
-
 ```
 
 ===
@@ -32,7 +30,6 @@ leaflet() %>%
   addTiles() %>%
   setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
   addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
-
 ```
 
 ===
@@ -44,7 +41,6 @@ leaflet() %>%
   addProviderTiles(providers$Esri.WorldImagery) %>%
   setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
   addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
-
 ```
 
 ===
