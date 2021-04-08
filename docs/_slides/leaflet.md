@@ -57,13 +57,13 @@ In addition to OSM, there are many other data providers that make sets of [tiles
 ~~~r
 leaflet() %>%
   addProviderTiles(providers$Esri.WorldImagery) %>%
-  setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
-  addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
+    setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
+      addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
 ~~~
 {:title="{{ site.data.lesson.handouts[0] }}" .text-document}
 <div class="figure">
-<!--html_preserve--><div id="htmlwidget-96c971a85306fb171a06" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-96c971a85306fb171a06">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[38.9767231,-76.505206,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"I am here!",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[38.9767231,-76.505206],7,[]],"limits":{"lat":[38.9767231,38.9767231],"lng":[-76.505206,-76.505206]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-6a0367b630e7e79cded4" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6a0367b630e7e79cded4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[38.9767231,-76.505206,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"I am here!",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"setView":[[38.9767231,-76.505206],7,[]],"limits":{"lat":[38.9767231,38.9767231],"lng":[-76.505206,-76.505206]}},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 <p class="caption"> </p>
 </div>
 
