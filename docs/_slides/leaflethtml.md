@@ -25,7 +25,7 @@ You can now open `map.htlm` in your browser. `map.html` will open as a full scre
 
 You can upload the html file wherever you like and then iframe to it if you want to embed it into a website:
 ```html
-iframe src="map.html" frameborder="0" width="100%" height="300px"></iframe>
+<iframe src="map.html" frameborder="0" width="100%" height="300px"></iframe>
 ```
 
 ===
