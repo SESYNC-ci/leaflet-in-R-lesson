@@ -3,7 +3,7 @@
 
 ## Publish a Leaflet map using HTML
 
-If you prefer not to use Shinny, you can render a map using HTML!
+If you prefer not to use Shiny, you can render a map using HTML!
 
 ~~~r
 library(leaflet)
@@ -21,9 +21,9 @@ map <- leaflet() %>%
 saveWidget(map, file="map.html")    # Save map as an html file
 ~~~
 
-You can now open `map.htlm` in your browser. `map.html` will open as a full screen html file in your browser. 
+You can now open `map.html` in your browser. `map.html` will open as a full screen html file. 
 
-You can upload the html file wherever you like and then iframe to it if you want to embed it into a website:
+You can upload the html file wherever you like. Use `iframe` if you want to embed it into a website:
 ```html
 <iframe src="map.html" frameborder="0" width="100%" height="400px"></iframe>
 ```

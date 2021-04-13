@@ -69,6 +69,9 @@ leaflet() %>%
   addLayersControl(baseGroups = c("click", "hover"))
 ```
 
+Notice that the names `"click"` and `"hover"` that we assigned to the groups correspond to the different behavior of popups and labels!
+{:.notes}
+
 ===
 
 For numeric or categorical data, create a color palette from [colorbrewer](http://colorbrewer2.org/#) using `colorNumeric()`, `colorFactor()`, `colorBin()`, or `colorQuantile()`. 
@@ -84,6 +87,9 @@ leaflet() %>%
 ```
 
 Load the RColorBrewer library to see information about palettes in the `brewer.pal.info` data.frame.
+
+Leaflet's color palette syntax can be a little confusing. The functions called `color*()` return another function, so here the object `pal` is a custom-defined function that maps a numeric value to a color. In this case the range of values in `wbd_reg2$AREA` is mapped to the range of colors in the `"PiYG"` palette. Then we use formula notation, `~pal(AREA)`, to tell `addPolygons()` that the `fillColor` should be computed for each polygon by applying the function `pal()` to the `AREA` value of that polygon.
+{:.notes}
 
 ===
 
@@ -111,9 +117,12 @@ leaflet() %>%
   addLayersControl(baseGroups = c("markers", "circlemarkers"))
 ```
 
+Here the `radius` argument indicates the size of the `"circlemarkers"` group.
+{:.notes}
+
 ===
 
-Display a different number of markers at each zoom level using `clusterOptions` on markers or circle markers layers
+Display a different number of markers at each zoom level using `clusterOptions` on markers or circle markers layers.
 
 ```{r leaflet_cluster, handout = 1}
 leaflet() %>%
@@ -121,6 +130,11 @@ leaflet() %>%
   addMarkers(data = wqp_sites, clusterOptions = markerClusterOptions(),
              popup = ~paste(MntrnLN, ",", OrgnztI))
 ```
+
+Here, we use the function `markerClusterOptions()` with all default arguments. This will use pre-defined logic to decide 
+how many markers to collapse together at each zoom level. The `popup` argument will only
+show the popup text when you are zoomed in far enough to click on an individual marker.
+{:.notes}
 
 ===
 

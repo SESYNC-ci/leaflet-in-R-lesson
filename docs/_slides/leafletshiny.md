@@ -19,7 +19,7 @@ The ui and server interact through `*input` and `*output` objects such as input 
 
 To see how this works, we'll build a shiny app with a leaflet map, where one of the map layers is defined with a user-specified value from an input widget. See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo1/). 
 
-Define an output object called "map" in the server function. 
+Define an output object called `map` in the server function. 
 
 
 
@@ -38,9 +38,14 @@ Define an output object called "map" in the server function.
 {:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
 
+We wrap the leaflet map inside the `renderLeaflet()` function, using curly brackets `{}` around the expression.
+We include two tile layers, OpenStreetMap and MODIS imagery, with layers control activated to 
+allow the user to select which one to display.
+{:.notes}
+
 ===
 
-Define the ui to include the output called "map". 
+Define the ui to include the output called `"map"`. 
 
 
 
@@ -69,6 +74,12 @@ ui <- fluidPage(
 {:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
 
+The `dateInput()` function's first argument is the name of the input object
+that is passed to the server function. We'll call it `"dateinput"`. The
+next argument is the descriptive title seen by the user, and the `value` 
+argument is the starting value before user input.
+{:.notes}
+
 ===
 
 Use the `dateinput` input object in the Provider Tiles layer.
@@ -81,3 +92,9 @@ Use the `dateinput` input object in the Provider Tiles layer.
 ~~~
 {:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
+
+Now, the MODIS tiles will be retrieved for a user-input day specified by
+`providerTileOptions()`. The MODIS tile provider accepts an option called
+`time` to which we pass the `dateinput` object from the list called `input`
+that the server function gets from the ui.
+{:.notes}
