@@ -5,13 +5,13 @@ editor_options:
 
 ## What's a Leaflet?
 
-leaflet produces maps have controls to zoom, pan and toggle layers on and off, and can combine local data with base layers from web mapping services. 
+Leaflet produces maps that have controls to zoom, pan and toggle layers on and off, and can combine local data with base layers from web mapping services. 
 
 Maps will appear in RStudio's Viewer pane, and can also be viewed in a web browser and saved as html files. 
 
 ===
 
-The `leaflet()` function creates an empty leaflet map to which layers can be added using the pipe (`%>%`) operator. The `addTiles()` functions adds a base tiled map; by default, it uses tiles made from [OpenStreetMap](https://www.openstreetmap.org/) data. Center and set an initial zoom level the map with `setView()`. Switch to the "Viewer" tab in RStudio to see the result.
+The `leaflet()` function creates an empty leaflet map to which layers can be added using the pipe (`%>%`) operator. The `addTiles()` functions adds a base tiled map; by default, it uses tiles made from [OpenStreetMap](https://www.openstreetmap.org/) data. Center and set an initial zoom level for the map with `setView()`. Switch to the "Viewer" tab in RStudio to see the result.
 
 ```{r leaflet_base, handout = 0}
 library(leaflet)
@@ -34,7 +34,7 @@ leaflet() %>%
 
 ===
 
-In addition to OSM, there are many other data providers that make sets of [tiles](https://wiki.openstreetmap.org/wiki/Tiles) available to use as basemaps. There is a R list object called `providers` with the names of these options. 
+In addition to OSM, there are many other data providers that make sets of [tiles](https://wiki.openstreetmap.org/wiki/Tiles) available to use as basemaps. There is a R list object that loads with leaflet called `providers` with the names of these options. 
 
 ```{r leaflet_providertiles, handout = 0}
 leaflet() %>%
@@ -48,4 +48,4 @@ leaflet() %>%
 Zoom all the way out. What projection does it look like this map is using? 
 ![dragons]({% include asset.html path="images/dragons.png" %}){:height="200%"}
 
-Read more about the [intracacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) e.g. why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). Learn how to define a custom leaflet CRS [here](https://rstudio.github.io/leaflet/projections.html).make
+Read more about the [intricacies of web mercator](https://www.researchgate.net/publication/265895464_Implications_of_Web_Mercator_and_Its_Use_in_Online_Mapping) e.g. why it is [considered unsuitable for geospatial intelligence purposes](https://www.slideshare.net/NGA_GEOINT/ngas-position-on-webmercator). Learn how to define a custom leaflet CRS [here](https://rstudio.github.io/leaflet/projections.html).

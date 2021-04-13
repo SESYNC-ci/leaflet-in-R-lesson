@@ -10,7 +10,11 @@ Spatial objects (points, lines, polygons, rasters) in your R environment can als
 
 ===
 
-Read in data using sf and raster packages. Points are from the [Water Quality Portal](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016WR019993) [accessed via](https://github.com/SESYNC-ci/leaflet-in-R-lesson/blob/master/get_wqp_sites.R) the `dataRetrieval` package. County boundaries are from the [Census](https://www.census.gov/geo/maps-data/data/tiger-line.html) and [Watershed boundaries](https://water.usgs.gov/maps.html) are from USGS.
+Read in data using [sf](){:.rlib} and [raster](){:.rlib} packages. Points are from the 
+[Water Quality Portal](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2016WR019993) 
+accessed via the [dataRetrieval](){:.rlib} package using [this script]((https://github.com/SESYNC-ci/leaflet-in-R-lesson/blob/master/get_wqp_sites.R)).
+County boundaries are from the [Census](https://www.census.gov/geo/maps-data/data/tiger-line.html) 
+and [Watershed boundaries](https://water.usgs.gov/maps.html) are from USGS.
 
 ```{r read_data, handout = 1, message = FALSE, results='hide'}
 library(sf)
@@ -23,6 +27,11 @@ wbd_reg2 <- st_read("data/huc250k/") %>%
   filter(REG == "02") %>% st_transform(4326)
 nlcd <- raster("data/nlcd_crop.grd")
 ```
+
+Here we use `filter` to subset the county boundaries to the state with code `24` (Maryland) 
+and the watershed boundaries to hydrologic unit `02` (Mid-Atlantic). We transform both
+to [EPSG:4326](https://epsg.io/4326) (latitude-longitude coordinates with WGS84 datum).
+{:.notes}
 
 ===
 
