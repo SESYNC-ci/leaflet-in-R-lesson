@@ -5,7 +5,7 @@
 
 If you prefer not to use Shinny, you can render a map using HTML!
 
-```{r leaflet_html}
+~~~r
 library(leaflet)
 
 map <- leaflet() %>%
@@ -18,14 +18,14 @@ map <- leaflet() %>%
     attribution = "Weather data © 2012 IEM Nexrad"
   )
 
-#saveWidget(map, file="map.html")    # Save map as an html file
-```
+saveWidget(map, file="map.html")    # Save map as an html file
+~~~
 
 You can now open `map.htlm` in your browser. `map.html` will open as a full screen html file in your browser. 
 
 You can upload the html file wherever you like and then iframe to it if you want to embed it into a website:
 ```html
-iframe src="map.html" frameborder="0" width="100%" height="300px"></iframe>
+<iframe src="map.html" frameborder="0" width="100%" height="400px"></iframe>
 ```
 
 ===

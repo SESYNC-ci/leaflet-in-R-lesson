@@ -16,3 +16,8 @@ For Shiny apps
 
 * `renderLeaflet()` objects in the server and use them in the ui with `leafletOutput()`
 * Use `leafletProxy()` to avoid re-rendering the whole map object
+
+For HTML
+
+* `saveWidget(map, file="map.html")` saves your map object as an html file which can be loaded in a browser. 
+* Use `iframe` to embed the map html file to your website and share it :). 

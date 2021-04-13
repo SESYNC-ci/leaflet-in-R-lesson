@@ -2,7 +2,7 @@
 excerpt: Test Leaflet
 ---
 
-An empty `leaflet()` map.
+An empty `leaflet()` map for testing.
 
 ```{r leaflet_base, handout = 0, fig.cap = ""}
 library(leaflet)

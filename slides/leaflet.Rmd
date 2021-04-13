@@ -39,8 +39,8 @@ In addition to OSM, there are many other data providers that make sets of [tiles
 ```{r leaflet_providertiles, handout = 0}
 leaflet() %>%
   addProviderTiles(providers$Esri.WorldImagery) %>%
-  setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
-  addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
+    setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
+      addMarkers(lng = -76.505206, lat = 38.9767231, popup = "I am here!")
 ```
 
 ===
