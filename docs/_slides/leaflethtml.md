@@ -1,31 +1,74 @@
 ---
 ---
 
-## Publish a Leaflet map using HTML
+## Publish a Leaflet Map
 
 If you prefer not to use Shiny, you can render a map using HTML!
 
+Using leaflet create a map for the north east United States and add a weather data tile. 
+
+
 ~~~r
-library(leaflet)
+> library(leaflet)
+> library(htmlwidgets)
+> 
+> map <- leaflet() %>%
++   addTiles() %>%
++   setView(lng = -76.505206, lat = 38.9767231, zoom = 5) %>%
++   addWMSTiles(
++     "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
++     layers = "nexrad-n0r-900913", 
++     options = WMSTileOptions(format = "image/png", transparent = TRUE),
++     attribution = "Weather data © 2012 IEM Nexrad"
++   )
+> map
+~~~
+{:title="Console" .input}
+<div class="figure">
+<!--html_preserve--><div id="htmlwidget-c90fea7a16678af3a3ce" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c90fea7a16678af3a3ce">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}],"setView":[[38.9767231,-76.505206],5,[]]},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<p class="caption"> </p>
+</div>
 
-map <- leaflet() %>%
-  addTiles() %>%
-  setView(lng = -76.505206, lat = 38.9767231, zoom = 5) %>%
-  addWMSTiles(
-    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
-    layers = "nexrad-n0r-900913", 
-    options = WMSTileOptions(format = "image/png", transparent = TRUE),
-    attribution = "Weather data © 2012 IEM Nexrad"
-  )
-
-saveWidget(map, file="map.html")    # Save map as an html file
+Now that we have a map, let's save it by using the `saveWidget()`function.
+`saveWidget()` will save your map to your working directory as a `.html` file.
+~~~r
+saveWidget(map, file="map.html")
 ~~~
 
-You can now open `map.html` in your browser. `map.html` will open as a full screen html file. 
+Check where your map was saved by using the `getwd()` function which will show your working directory. If you would like to save your map somewhere more specific, you can specify the whole path before `map.html`. 
+~~~r
+saveWidget(map, file="/save/here/map.html")
+~~~
 
-You can upload the html file wherever you like. Use `iframe` if you want to embed it into a website:
+You can now open `map.html` in your browser. `map.html` will open as a full screen html file.
+
+---
+
+To share your map, you can upload the `html` file to GitHub or any web server. 
+We suggest you use GitHub and GitHub pages to share your map. 
+
+Publishing your map via GitHub is simple: 
+1. Create a repository on GitHub.
+2. Rename your `map.html` file to `index.html` and push this file to your repository. 
+3. Go to your repository's settings and enable GitHub Pages. 
+4. After a few minutes, your page will be ready to go and a link will be provided. 
+
+Your map is now live. You can now share the link with your colleagues to share your map!
+
+For more information about GitHub pages please see our lesson on [Advanced git Techniques](https://cyberhelp.sesync.org/advanced-git-lesson/#/slides/pages). 
+For information on getting started with GitHub check out our [Basic git](https://cyberhelp.sesync.org/basic-git-lesson/) lesson.
+
+---
+
+If you prefer to embed your map inside a project, personal, or any other website you can do so by using the html `<iframe>` tag.
+
 ```html
-<iframe src="map.html" frameborder="0" width="100%" height="400px"></iframe>
+<iframe src="map.html" frameborder="0" width="50%" height="200px"></iframe>
 ```
+This is a good option when you already have a site built and would like to add your map to share it.
+
+Web development is out of the scope of this lesson, but please check this [tutorial](https://www.tutorialrepublic.com/html-tutorial/html-iframes.php) out if you would like to learn more about using the `iframe` tag in your websites. 
+
 
 ===
