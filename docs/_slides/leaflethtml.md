@@ -25,8 +25,8 @@ Using leaflet create a map for the north east United States and add a weather da
 ~~~
 {:title="Console" .input}
 <div class="figure">
-<!--html_preserve--><div id="htmlwidget-c90fea7a16678af3a3ce" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c90fea7a16678af3a3ce">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}],"setView":[[38.9767231,-76.505206],5,[]]},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
+<!--html_preserve--><div id="htmlwidget-6d69db6fe55c485608bf" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d69db6fe55c485608bf">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}],"setView":[[38.9767231,-76.505206],5,[]]},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
 <p class="caption"> </p>
 </div>
 
@@ -58,7 +58,7 @@ Your map is now live. You can now share the link with your colleagues to share y
 
 For more information about GitHub pages please see our lesson on [Advanced git Techniques](https://cyberhelp.sesync.org/advanced-git-lesson/#/slides/pages). 
 For information on getting started with GitHub check out our [Basic git](https://cyberhelp.sesync.org/basic-git-lesson/) lesson.
-
+{:.notes}
 ---
 
 If you prefer to embed your map inside a project, personal, or any other website you can do so by using the html `<iframe>` tag.
@@ -69,6 +69,6 @@ If you prefer to embed your map inside a project, personal, or any other website
 This is a good option when you already have a site built and would like to add your map to share it.
 
 Web development is out of the scope of this lesson, but please check this [tutorial](https://www.tutorialrepublic.com/html-tutorial/html-iframes.php) out if you would like to learn more about using the `iframe` tag in your websites. 
-
+{:.notes}
 
 ===

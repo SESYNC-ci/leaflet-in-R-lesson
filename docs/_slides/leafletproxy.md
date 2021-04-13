@@ -9,7 +9,7 @@ Let's make a new shiny app that only changes one layer when a new value is selec
 
 ===
 
-Define a color palette in the server using `colorNumeric()` and the user's selection from the color brewer palettes (accessed via the row names of the `brewer.pal.info` data.frame).
+Define a color palette in the server object using `colorNumeric()` and the user's selection from the color brewer palettes (accessed via the row names of the `brewer.pal.info` data.frame).
 
 
 
@@ -21,11 +21,11 @@ pal <- colorNumeric(input$colors, wbd_reg2$AREA)
 
 ===
 
-Run the app and zoom in or out. What happens when you change the color scheme? 
+Run the app using `shinyApp(ui, server)` and zoom in or out. What happens when you change the color scheme? 
 
 ===
 
-Instead of having the `input$` object referred to in the initial `renderLeaflet` definition in the server, move the "reactivity" to a `leafletProxy()` object in the server. Also redefine the initial palette in the `renderLeaflet` definition, e.g. to `"BrBG"`. What happens without the `clearControls()` layer? 
+Instead of having the `input$` object referred to in the initial `renderLeaflet` definition in the server, move the "reactivity" to a `leafletProxy()` object in the server object. Also redefine the initial palette in the `renderLeaflet` definition, e.g. to `"BrBG"`. What happens without the `clearControls()` layer? 
 
 
 
@@ -45,3 +45,5 @@ observe({
 ~~~
 {:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
+
+Refer to [Shinny Apps](https://cyberhelp.sesync.org/basic-Shiny-lesson/) for a more in depth lesson on Shinny. 

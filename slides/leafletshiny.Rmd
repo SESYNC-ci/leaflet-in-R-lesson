@@ -22,6 +22,8 @@ To see how this works, we'll build a shiny app with a leaflet map, where one of 
 Define an output object called `map` in the server function. 
 
 ```{r leaflet_shiny1, handout = 2, eval = FALSE}
+server <- function(input, output) {
+  
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles(group = "OSM") %>%
@@ -32,6 +34,8 @@ Define an output object called `map` in the server function.
                        options = layersControlOptions(collapsed = FALSE)
       )
   })
+  
+}
 ```
 
 We wrap the leaflet map inside the `renderLeaflet()` function, using curly brackets `{}` around the expression.
@@ -82,3 +86,12 @@ Now, the MODIS tiles will be retrieved for a user-input day specified by
 `time` to which we pass the `dateinput` object from the list called `input`
 that the server function gets from the ui.
 {:.notes}
+
+===
+
+Display your app.
+~~~r
+shinyApp(ui, server)
+~~~
+
+===

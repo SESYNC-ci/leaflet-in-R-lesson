@@ -24,6 +24,8 @@ Define an output object called `map` in the server function.
 
 
 ~~~r
+server <- function(input, output) {
+  
   output$map <- renderLeaflet({
     leaflet() %>%
       addTiles(group = "OSM") %>%
@@ -34,6 +36,8 @@ Define an output object called `map` in the server function.
                        options = layersControlOptions(collapsed = FALSE)
       )
   })
+  
+}
 ~~~
 {:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
 
@@ -98,3 +102,12 @@ Now, the MODIS tiles will be retrieved for a user-input day specified by
 `time` to which we pass the `dateinput` object from the list called `input`
 that the server function gets from the ui.
 {:.notes}
+
+===
+
+Display your app.
+~~~r
+shinyApp(ui, server)
+~~~
+
+===
