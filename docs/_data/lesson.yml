@@ -24,7 +24,7 @@ sorter:
   - leaflet
   - layers
   - datalayers
+  - leaflethtml
   - leafletshiny
   - leafletproxy
-  - leaflethtml
   - conclude
