@@ -3,7 +3,7 @@
 
 ## Publish a Leaflet Map
 
-If you prefer not to use Shiny, you can render a map using HTML!
+You can render a map and publish it using HTML.
 
 Using leaflet create a map for the north east United States and add a weather data tile. 
 ```{r}
