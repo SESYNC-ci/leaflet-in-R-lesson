@@ -40,11 +40,10 @@ To see how all of this works, we'll build a shiny app with a leaflet map, where 
 
 Load the Shiny library. Install it if needed.
 
-```{r}
+~~~r
 install.packages("shiny") # install the shiny package if needed
-
 library(shiny)
-```
+~~~
 
 Define an output object called `map` in the server function. 
 
@@ -135,15 +134,13 @@ Refer to [Shinny Apps](https://cyberhelp.sesync.org/basic-Shiny-lesson/) for a m
 
 ===
 
-We now are able to publush your map via a Shiny app! 
-
+We now are able to publish your map via a Shiny app!
 However, the app is hosted locally and can only be viewed on your local machine. 
 
+--- 
 To share your map and Shiny app with others, first make sure everything the app needs to run (data and packages) is loaded into the R session. 
 
---- 
-
-You can share your Shiny app as files. This is limited and requires users to have R installed on their computers. 
+You can share your Shiny app as files. This is limited and requires users to have R installed on their computers.
 
 * Directly share the source code (app.R, or ui.R and server.R) along with all required data files. 
   * Your app user can place the files into a local directory.
