@@ -17,6 +17,7 @@ ui <- fluidPage(h1("Hello Shiny!") # add a comma when you add more
 server <- function(input, output) {
 
   # output$map <- ...({
+  #   # leaflet map is defined here with tiles, initial view, and layer control options
   #   leaflet() %>%
   #     addTiles(group = "OSM") %>%
   #     addProviderTiles(..., 

@@ -3,28 +3,57 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Leaflet in shiny
+## Leaflet in Shiny
 
-Incorporating leaflet maps into [RShiny](https://shiny.rstudio.com/) applications allows for creating more customized interactivity using R code.
+Shiny is a web application framework for R that allows you to create interactive web apps without requiring knowledge of HTML, CSS, or JavaScript. These web apps can be used for exploratory data analysis and visualization, to facilitate remote collaboration, share maps, and [much more](https://shiny.rstudio.com/gallery/).
 
-As you may have learned in the [Shiny lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/), the app comprises a *user interface* object that defines how it appears, and a *server* object that defines how it behaves. 
+Incorporating leaflet maps into Shiny applications allows for creating more customized interactivity using R code.
+
+As you may have learned in the [Shiny lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/#/slides/files), the app comprises a *user interface* object that defines how it appears, and a *server* object that defines how it behaves. 
 
 ===
 
-The ui and server interact through `*input` and `*output` objects such as input widgets, plots, buttons, tables, etc. Leaflet maps in Shiny are constructed with `renderLeaflet()` and displayed in the output using `leafletOutput()`.
+The ui and server interact through `*input` and `*output` objects such as input widgets, plots, buttons, tables, etc.
 
 ![shinyarrows]({% include asset.html path="images/shiny-arrows.png" %})
 
+The example below represents a basic Shiny app. 
+~~~r
+# Define the user interface
+ui <- navbarPage(title = 'Hello, Shiny World!')
+
+# define the server component
+server <- function(input, output){}
+
+# Create the app
+shinyApp(ui = ui, server = server)
+~~~
+We start by defining the ui. In this case, we use the `navbarPage()` function to define a navigation bar object to display the *"Hello, Shiny World!"* text. 
+Next we define the server component, a custom function that specifies the behavior of the app. The server function takes in two parameters, an input and an output. In the example above, the server function is currently empty, so our app doesn't do anything, but we will cover this shortly.
+{:.notes}
+
 ===
 
-To see how this works, we'll build a shiny app with a leaflet map, where one of the map layers is defined with a user-specified value from an input widget. See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo1/). 
+Leaflet maps in Shiny are constructed with `renderLeaflet()` and displayed in the output using `leafletOutput()`.
+
+To see how all of this works, we'll build a shiny app with a leaflet map, where one of the map layers is defined with a user-specified value from an input widget. See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo1/). 
+
+Load the Shiny library. Install it if needed.
+
+```{r}
+install.packages("shiny") # install the shiny package if needed
+
+library(shiny)
+```
 
 Define an output object called `map` in the server function. 
 
 ```{r leaflet_shiny1, handout = 2, eval = FALSE}
 server <- function(input, output) {
   
+  # renderLeaflet created the map widget for the app 
   output$map <- renderLeaflet({
+    # leaflet map is defined here with tiles, initial view, and layer control options
     leaflet() %>%
       addTiles(group = "OSM") %>%
       addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
@@ -41,6 +70,7 @@ server <- function(input, output) {
 We wrap the leaflet map inside the `renderLeaflet()` function, using curly brackets `{}` around the expression.
 We include two tile layers, OpenStreetMap and MODIS imagery, with layers control activated to 
 allow the user to select which one to display.
+`output$map` is assigned the map widget for the app rendered by the `renderLeaflet` function.
 {:.notes}
 
 ===
@@ -53,6 +83,10 @@ ui <- fluidPage(
 )
 ```
 
+Remember, the ui is the page that humans interact with. In this case, it is a fluid page containing the map. We include the output of the `leafletOutput()` function, the map rendered in the server function, and add it to the apps page. 
+A fluid page is a browser window that scales uo or down as the window size is changed. 
+{:.notes}
+
 ===
 
 Add a panel to the ui that will let users choose a calendar date. 
@@ -60,15 +94,15 @@ Add a panel to the ui that will let users choose a calendar date.
 ```{r leaflet_shiny3, handout = 2, eval = FALSE}
 ui <- fluidPage(
     leafletOutput("map", height = 800),
+      # add calendar panel
       absolutePanel(top = 100, right = 10, draggable = TRUE,
               dateInput("dateinput", "Imagery Date", value = "2018-03-28"
                     )
 ))
 ```
 
-The `dateInput()` function's first argument is the name of the input object
-that is passed to the server function. We'll call it `"dateinput"`. The
-next argument is the descriptive title seen by the user, and the `value` 
+We have the map and now we add a calendar panel to let the user pick a date. We use `dateInput()` to define the panel type and set the panel position with the `absolutePanel()` function. You'll notice that we have defined the an input id, a label, and a initial value for the panel widget inside the `dateInput() `function. The input id will be used to access the value, date, set by the user in the `server` function. The
+next argument, label, is the descriptive title seen by the user, and the `value` 
 argument is the starting value before user input.
 {:.notes}
 
@@ -90,8 +124,55 @@ that the server function gets from the ui.
 ===
 
 Display your app.
+
 ~~~r
 shinyApp(ui, server)
 ~~~
 
+A new window with your leaflet map app will be launched. The `shinyApp()` function creates a Shiny app from an ui/server pair. 
+
+Refer to [Shinny Apps](https://cyberhelp.sesync.org/basic-Shiny-lesson/) for a more in depth lesson on Shinny. 
+
 ===
+
+We now are able to publush your map via a Shiny app! 
+
+However, the app is hosted locally and can only be viewed on your local machine. 
+
+To share your map and Shiny app with others, first make sure everything the app needs to run (data and packages) is loaded into the R session. 
+
+--- 
+
+You can share your Shiny app as files. This is limited and requires users to have R installed on their computers. 
+
+* Directly share the source code (app.R, or ui.R and server.R) along with all required data files. 
+  * Your app user can place the files into a local directory.
+  * They can launch the app in R by running `runApp("appFolderName")`
+~~~r
+library(shiny)
+runApp("coolApp")
+~~~
+
+* Publish the files to a GitHub repository, and advertise that your app can be cloned and run with `runGitHub('<USERNAME>/<REPO>')`
+  * Create a directory for your app
+  * Share directory with app users and instruct to clone it
+  * Run app with `runGitHub()`
+~~~r
+library(shiny)
+runGitHub("<USERNAME>/<REPO>")
+~~~
+
+---
+
+You can share your Shiny app as as web page. This is the prefered way to share Shiny apps since users do not need to have R installed on their computers.
+
+To share just the UI (i.e. the web page), your app will need to be hosted by a server able to run the R code that powers the app while also acting as a public web server. There is limited free hosting available through RStudio with [shinyapps.io](https://www.shinyapps.io). 
+
+If your are associated with SESYNC,  SESYNC maintains a Shiny Apps server for our working group participants, and many other research centers are doing the same.
+
+Check out these series of articles on the RStudio website [about deploying apps](https://shiny.rstudio.com/articles/#deployment).
+
+For other ways to share your app check [this](https://shiny.rstudio.com/tutorial/written-tutorial/lesson7/) out.
+
+
+

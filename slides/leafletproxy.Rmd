@@ -1,7 +1,7 @@
 ---
 ---
 
-## Leaflet in shiny for people in a hurry
+## Leaflet in Shiny Tips
 
 Rendering maps can be slow. Use `leafletProxy()` so the whole map doesn't have to be re-drawn every time the user input is updated. 
 

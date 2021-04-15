@@ -20,5 +20,6 @@ For HTML
 For Shiny apps
 
 * `renderLeaflet()` objects in the server and use them in the ui with `leafletOutput()`
-* Use `leafletProxy()` to avoid re-rendering the whole map object
+* Use `shinyApp()` to display your map with Shiny.  
+* Host your app on GitHub or another web server and share your app. 
 
