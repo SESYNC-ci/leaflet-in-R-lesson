@@ -3,6 +3,14 @@
 
 ## Summary
 
+We have covered:
+
+- how to build an interactive map using `Leaflet`
+- how to publish a Leaflet map using HTML and Github
+- how to integrate and publish a Leaflet map with `Shiny`
+
+===
+
 Main functions for leaflet maps
 
 * **View window** - `setView(lat, lon, zoom)` `fitBounds()` `setMaxBounds()`
@@ -22,4 +30,5 @@ For Shiny apps
 * `renderLeaflet()` objects in the server and use them in the ui with `leafletOutput()`
 * Use `shinyApp()` to display your map with Shiny.  
 * Host your app on GitHub or another web server and share your app. 
+* Optimize your Shiny maps using `leafletproxy()`
 

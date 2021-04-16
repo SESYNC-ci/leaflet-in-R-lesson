@@ -3,45 +3,62 @@
 
 ## Publish a Leaflet Map
 
-You can render a map and publish it using HTML.
+You can render a map and publish it using the `htmlwidgets` package.  
+HTML widgets work just like R plots except they produce interactive web visualizations. 
+
+===
+
+A line or two of R code is all it takes to produce a Leaflet map as an HTML file.  
+Your HTML map can be used as a stand alone web site or embedded in an existing website. 
+
+===
 
 Using leaflet create a map for the north east United States and add a weather data tile. 
 
 
 ~~~r
-> library(leaflet)
-> library(htmlwidgets)
-> 
-> map <- leaflet() %>%
-+   addTiles() %>%
-+   setView(lng = -76.505206, lat = 38.9767231, zoom = 5) %>%
-+   addWMSTiles(
-+     "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
-+     layers = "nexrad-n0r-900913", 
-+     options = WMSTileOptions(format = "image/png", transparent = TRUE),
-+     attribution = "Weather data © 2012 IEM Nexrad"
-+   )
-> map
+library(leaflet)
+library(htmlwidgets)
+
+map <- leaflet() %>%
+  addTiles() %>%
+  setView(lng = -76.505206, lat = 38.9767231, zoom = 5) %>%
+  addWMSTiles(
+    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+    layers = "nexrad-n0r-900913", 
+    options = WMSTileOptions(format = "image/png", transparent = TRUE),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  )
 ~~~
-{:title="Console" .input}
-<div class="figure">
-<!--html_preserve--><div id="htmlwidget-35740c1d02beff74fd2b" style="width:504px;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-35740c1d02beff74fd2b">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}],"setView":[[38.9767231,-76.505206],5,[]]},"evals":[],"jsHooks":[]}</script><!--/html_preserve-->
-<p class="caption"> </p>
-</div>
+{:title="{{ site.data.lesson.handouts[1] }}" .text-document}
+
+
+===
 
 Now that we have a map, let's save it by using the `saveWidget()`function.
 `saveWidget()` will save your map to your working directory as a `.html` file.
+
+
 ~~~r
 saveWidget(map, file="map.html")
 ~~~
+{:title="{{ site.data.lesson.handouts[1] }}" .text-document}
 
-Check where your map was saved by using the `getwd()` function which will show your working directory. If you would like to save your map somewhere more specific, you can specify the whole path before `map.html`. 
+
+===
+
+Check where your map was saved by using the `getwd()` function which will show your working directory. If you would like to save your map somewhere more specific, you can specify the whole path before `map.html`. For example, `/User/Documents/Maps/map.html`.
+
+
 ~~~r
-saveWidget(map, file="/save/here/map.html")
+saveWidget(map, file="/data/map.html")
 ~~~
+{:title="{{ site.data.lesson.handouts[1] }}" .no-eval .text-document}
+
 
 You can now open `map.html` in your browser. `map.html` will open as a full screen html file.
+
+===
 
 ---
 
@@ -56,6 +73,8 @@ Publishing your map via GitHub is simple:
 
 Your map is now live. You can now share the link with your colleagues to share your map!
 
+===
+
 For more information about GitHub pages please see our lesson on [Advanced git Techniques](https://cyberhelp.sesync.org/advanced-git-lesson/#/slides/pages). 
 For information on getting started with GitHub check out our [Basic git](https://cyberhelp.sesync.org/basic-git-lesson/) lesson.
 {:.notes}
@@ -67,6 +86,8 @@ If you prefer to embed your map inside a project, personal, or any other website
 <iframe src="map.html" frameborder="0" width="50%" height="200px"></iframe>
 ```
 This is a good option when you already have a site built and would like to add your map to share it.
+
+===
 
 Web development is out of the scope of this lesson, but please check this [tutorial](https://www.tutorialrepublic.com/html-tutorial/html-iframes.php) out if you would like to learn more about using the `iframe` tag in your websites. 
 {:.notes}

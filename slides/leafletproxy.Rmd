@@ -1,41 +1,111 @@
 ---
 ---
 
-## Leaflet in Shiny Tips
+## Shiny Optimization 
 
-Rendering maps can be slow. Use `leafletProxy()` so the whole map doesn't have to be re-drawn every time the user input is updated. 
-
-Let's make a new shiny app that only changes one layer when a new value is selected from an input widget. See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo2/). 
+Rendering maps can be slow. 
+Use `leafletProxy()` so the whole map doesn't have to be re-drawn every time the user input is updated.  
 
 ===
 
-Define a color palette in the server object using `colorNumeric()` and the user's selection from the color brewer palettes (accessed via the row names of the `brewer.pal.info` data.frame).
+`leafletProxy()` allows for finer-grained control over a map, such as changing the color of a single polygon or adding a marker at the point of a click – without redrawing the entire map.
 
-```{r leaflet_shiny5, handout = 2, eval = FALSE}
-pal <- colorNumeric(input$colors, wbd_reg2$AREA)
+===
+
+It is good practice to modify a map that’s already running in a Shiny app with a `leafletProxy()` function call in place of the `leaflet()` call, but otherwise use Leaflet function calls as normal.
+
+Let's make a new shiny app that only changes one map layer when a new value is selected from an input widget.  
+See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo2/). 
+
+===
+
+Read in data for watershed boundaries for the North East USA.
+
+```{r leafletproxy1, handout = 3, eval = FALSE}
+wbd_reg2 <- st_read("https://raw.githubusercontent.com/khondula/leaflet-in-R-shinydemo2/master/data/wbd_reg2.geojson") %>%
+  filter(REG == "02") %>%
+  st_transform(4326)
+```
+The goejson file is stored in GitHub. 
+We assign a region (North East, USA) and a EPSG:**4326** projection.
+{:.notes}
+
+===
+
+Define the user interface of the Shiny app. 
+A map and an input panel to select a color scheme for the layer is defined. 
+
+```{r leafletproxy2, handout = 3, eval = FALSE}
+# user interface with map and color scheme widget
+ui <- fluidPage(
+  leafletOutput("map", height = 800),
+  absolutePanel(top = 10, right = 10, draggable = TRUE,
+                selectInput(inputId = "colors",
+                            label = "Color Scheme",
+                            choices = row.names(brewer.pal.info))
+  ))
 ```
 
 ===
 
-Run the app using `shinyApp(ui, server)` and zoom in or out. What happens when you change the color scheme? 
+Define the server.
+```{r leafletproxy3, handout = 3, eval = FALSE}
+# server definition
+server <- function(input, output) {
+  output$map <- renderLeaflet({
+    
+    # use this line with leafletproxy for default colors
+    pal <- colorNumeric("BrBG", wbd_reg2$AREA) 
 
-===
-
-Instead of having the `input$` object referred to in the initial `renderLeaflet` definition in the server, move the "reactivity" to a `leafletProxy()` object in the server object. Also redefine the initial palette in the `renderLeaflet` definition, e.g. to `"BrBG"`. What happens without the `clearControls()` layer? 
-
-```{r leaflet_shiny7, handout = 2, eval = FALSE}
-observe({
+    # map wit polygons and legend
+    leaflet() %>%
+      addTiles() %>%
+      setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
+      addPolygons(data = wbd_reg2, 
+                  fill = TRUE,
+                  color = "black", 
+                  weight =1,
+                  fillColor = ~pal(AREA), # color is function of the wbd AREA column
+                  fillOpacity = 0.8,
+                  popup = ~HUC_NAME) %>%
+      addLegend(position = "bottomright", pal = pal, values = wbd_reg2$AREA)
+  })
+  
+  # update map using leaflet proxy instead of recreating the whole thing
+  # use observe to color layer as needed
+  observe({
     pal <- colorNumeric(input$colors, wbd_reg2$AREA)
-
+    
     leafletProxy("map") %>%
       clearShapes() %>% clearControls() %>%
       addPolygons(data = wbd_reg2, fill = TRUE,
                   color = "black", weight =1,
-                  fillColor = ~pal(AREA), fillOpacity = 0.8,
+                  fillColor = ~pal(AREA),
+                  fillOpacity = 0.8,
                   popup = ~HUC_NAME) %>%
       addLegend(position = "bottomright", pal = pal, values = wbd_reg2$AREA)
-
   })
+}
 ```
+Incremental changes to the map (in this case, replacing the color of the watershed boundaries) should be performed in an observer. Each independent set of things that can change should be managed in its own observer.
+{:.notes}
 
-Refer to [Shinny Apps](https://cyberhelp.sesync.org/basic-Shiny-lesson/) for a more in depth lesson on Shinny. 
+===
+
+Run the app using `shinyApp(ui, server)` and zoom in or out. What happens when you change the color scheme?
+
+===
+
+---
+
+In summary, use `leafletProxy` to change, customize, and control, a map that has already been rendered. 
+
+Normally, you create a Leaflet map using the `leaflet()` function. This creates an in-memory representation of a map that you can customize using functions like `addPolygons()` and `setView()`. Such a map can be printed at the R console, included in an R Markdown document, or rendered as a Shiny app.
+
+===
+
+In the case of Shiny, you may want to further customize a map, even after it is rendered to an output. At this point, the in-memory representation of the map is long gone, and the user's web browser has already realized the Leaflet map instance.
+
+This is where `leafletProxy()` comes in. It returns an object that can stand in for the usual Leaflet map object. The usual map functions like `addPolygons` and `setView` can be called, and instead of customizing an in-memory representation, these commands will execute on the live Leaflet map instance optimizing you map! 
+
+===

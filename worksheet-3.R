@@ -3,6 +3,17 @@
 
 library(shiny)
 
+# Basic shiny app example
+# Define the user interface
+ui <- navbarPage(title = 'Hello, Shiny World!')
+
+# define the server component
+server <- function(input, output){}
+
+# Create the app
+shinyApp(ui = ui, server = server)
+
+
 ui <- fluidPage(h1("Hello Shiny!") # add a comma when you add more
   # ...("...", height = 800)
 )

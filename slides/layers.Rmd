@@ -7,8 +7,11 @@ editor_options:
 
 Layers can be assigned to named **groups** which can be toggled on and off by the user. *baseGroups* are selected with radio buttons (where you can only choose one at a time), and *overlayGroups* get checkboxes. 
 
+===
+
 To implement layers control, add group names to individual layers with the `group =` argument **AND** add the layers control layer using `addLayersControl()`. 
 
+===
 
 ```{r leaflet_layers, handout = 0}
 leaflet() %>%
@@ -84,13 +87,13 @@ The function `addEasyButton()` adds a simple button to perform an action on your
 
 This map adds one easy button to attempt to locate you.
 
-~~~r
+```{r leaflet_extras2, handout = 0, eval = FALSE}
 leaflet() %>%
   addTiles() %>% 
   addEasyButton(easyButton(
     icon="fa-crosshairs", title = "Locate me", 
-    onClick=JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
-~~~
+    onClick=JS("function(btn, map){ map.locate({setView: true}); }")))
+```
 
 The `onClick` argument wraps a little snippet of JavaScript code in the `JS` function, which
 runs when the button is clicked.

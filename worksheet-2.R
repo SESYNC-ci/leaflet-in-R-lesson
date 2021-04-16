@@ -6,6 +6,7 @@ library(sf) # read in points and polygons
 library(raster) # read in raster
 library(dplyr) # filter sf objects
 library(RColorBrewer) # for brewer.pal.info
+library(htmlwidgets) # for visualizing maps in a browser
 
 # read in water quality portal points
 wqp_sites <- ...("data/wqp_sites")
@@ -92,3 +93,20 @@ leaflet() %>%
   addTiles() %>%
   ...(nlcd)
 
+# Publish a map using html and a web hosting service
+# Create a leaflet map, add tiles, and set the view
+map <- leaflet() %>%
+  addTiles() %>%
+  setView(lng = -76.505206, lat = 38.9767231, zoom = 5) %>%
+  addWMSTiles(
+    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+    layers = "nexrad-n0r-900913", 
+    options = WMSTileOptions(format = "image/png", transparent = TRUE),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  )
+
+# save map to working directory as an html file
+saveWidget(map, file="map.html")
+
+# save map to a specific directory
+#saveWidget(map, file="/data/map.html")

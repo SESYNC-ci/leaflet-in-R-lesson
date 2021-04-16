@@ -5,9 +5,14 @@ editor_options:
 
 ## Leaflet in Shiny
 
-Shiny is a web application framework for R that allows you to create interactive web apps without requiring knowledge of HTML, CSS, or JavaScript. These web apps can be used for exploratory data analysis and visualization, to facilitate remote collaboration, share maps, and [much more](https://shiny.rstudio.com/gallery/).
+Shiny is a web application framework for R that allows you to create interactive web apps without requiring knowledge of HTML, CSS, or JavaScript. 
 
+===
+
+These web apps can be used for exploratory data analysis and visualization, to facilitate remote collaboration, share maps, and [much more](https://shiny.rstudio.com/gallery/).  
 Incorporating leaflet maps into Shiny applications allows for creating more customized interactivity using R code.
+
+===
 
 As you may have learned in the [Shiny lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/#/slides/files), the app comprises a *user interface* object that defines how it appears, and a *server* object that defines how it behaves. 
 
@@ -18,7 +23,11 @@ The ui and server interact through `*input` and `*output` objects such as input 
 ![shinyarrows]({% include asset.html path="images/shiny-arrows.png" %})
 
 The example below represents a basic Shiny app. 
+
+
 ~~~r
+library(shiny)
+
 # Define the user interface
 ui <- navbarPage(title = 'Hello, Shiny World!')
 
@@ -28,6 +37,8 @@ server <- function(input, output){}
 # Create the app
 shinyApp(ui = ui, server = server)
 ~~~
+{:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
+
 We start by defining the ui. In this case, we use the `navbarPage()` function to define a navigation bar object to display the *"Hello, Shiny World!"* text. 
 Next we define the server component, a custom function that specifies the behavior of the app. The server function takes in two parameters, an input and an output. In the example above, the server function is currently empty, so our app doesn't do anything, but we will cover this shortly.
 {:.notes}
@@ -37,13 +48,6 @@ Next we define the server component, a custom function that specifies the behavi
 Leaflet maps in Shiny are constructed with `renderLeaflet()` and displayed in the output using `leafletOutput()`.
 
 To see how all of this works, we'll build a shiny app with a leaflet map, where one of the map layers is defined with a user-specified value from an input widget. See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydemo1/). 
-
-Load the Shiny library. Install it if needed.
-
-~~~r
-install.packages("shiny") # install the shiny package if needed
-library(shiny)
-~~~
 
 Define an output object called `map` in the server function. 
 
@@ -75,8 +79,6 @@ We include two tile layers, OpenStreetMap and MODIS imagery, with layers control
 allow the user to select which one to display.
 `output$map` is assigned the map widget for the app rendered by the `renderLeaflet` function.
 {:.notes}
-
-===
 
 Define the ui to include the output called `"map"`. 
 
@@ -140,9 +142,13 @@ that the server function gets from the ui.
 
 Display your app.
 
+
+
 ~~~r
 shinyApp(ui, server)
 ~~~
+{:title="{{ site.data.lesson.handouts[2] }}" .no-eval .text-document}
+
 
 A new window with your leaflet map app will be launched. The `shinyApp()` function creates a Shiny app from an ui/server pair. 
 
