@@ -32,7 +32,7 @@ server <- function(input, output) {
     
     pal <- colorNumeric("BrBG", wbd_reg2$AREA) # use this line with leafletproxy for default colors
   
-    # map wit polygons and legend
+    # map with polygons and legend
     leaflet() %>%
       addTiles() %>%
       setView(lng = -76.505206, lat = 38.9767231, zoom = 7) %>%
@@ -49,6 +49,7 @@ server <- function(input, output) {
   # update map using leaflet proxy instead of recreating the whole thing
   # use observe to color layer as needed
   observe({
+    # color palette is defined according to the user's input
     pal <- colorNumeric(input$colors, wbd_reg2$AREA)
     
     leafletProxy("map") %>%
