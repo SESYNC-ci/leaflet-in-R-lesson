@@ -19,6 +19,7 @@ warning: false # whether to include note about lifecycle status
 authors: 
 - Kelly Hondula
 - Ian Carroll
+- Andres Garcia
 sorter:
   - intro
   - leaflet

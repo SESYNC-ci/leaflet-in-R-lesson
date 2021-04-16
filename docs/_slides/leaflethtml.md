@@ -4,16 +4,16 @@
 ## Publish a Leaflet Map
 
 You can render a map and publish it using the `htmlwidgets` package.  
-HTML widgets work just like R plots except they produce interactive web visualizations. 
+HTML widgets work just like R plots, except they produce interactive visualizations. 
 
 ===
 
 A line or two of R code is all it takes to produce a Leaflet map as an HTML file.  
-Your HTML map can be used as a stand alone web site or embedded in an existing website. 
+Your HTML map can be used as a standalone website or embedded in an existing website. 
 
 ===
 
-Using leaflet create a map for the north east United States and add a weather data tile. 
+Using leaflet, create a map centered on Annapolis and add a weather data tile. 
 
 
 ~~~r
@@ -42,30 +42,19 @@ Now that we have a map, let's save it by using the `saveWidget()`function.
 ~~~r
 saveWidget(map, file="map.html")
 ~~~
-{:title="{{ site.data.lesson.handouts[1] }}" .text-document}
-
-
-===
-
-Check where your map was saved by using the `getwd()` function which will show your working directory. If you would like to save your map somewhere more specific, you can specify the whole path before `map.html`. For example, `/User/Documents/Maps/map.html`.
-
-
-~~~r
-saveWidget(map, file="/data/map.html")
-~~~
 {:title="{{ site.data.lesson.handouts[1] }}" .no-eval .text-document}
 
 
-You can now open `map.html` in your browser. `map.html` will open as a full screen html file.
+You can now open `map.html` in your browser as a full-screen html file.
 
 ===
 
 ---
 
 To share your map, you can upload the `html` file to GitHub or any web server. 
-We suggest you use GitHub and GitHub pages to share your map. 
+We suggest you use GitHub Pages to share your map. 
 
-Publishing your map via GitHub is simple: 
+To publish your map on GitHub Pages, do the following: 
 1. Create a repository on GitHub.
 2. Rename your `map.html` file to `index.html` and push this file to your repository. 
 3. Go to your repository's settings and enable GitHub Pages. 
@@ -75,8 +64,9 @@ Your map is now live. You can now share the link with your colleagues to share y
 
 ===
 
-For more information about GitHub pages please see our lesson on [Advanced git Techniques](https://cyberhelp.sesync.org/advanced-git-lesson/#/slides/pages). 
-For information on getting started with GitHub check out our [Basic git](https://cyberhelp.sesync.org/basic-git-lesson/) lesson.
+For more information about GitHub Pages, including a walkthrough of the steps above, 
+please see our lesson on [Advanced git Techniques](https://cyberhelp.sesync.org/advanced-git-lesson/#/slides/pages). 
+For information on getting started with GitHub, check out our [Basic git](https://cyberhelp.sesync.org/basic-git-lesson/) lesson.
 {:.notes}
 ---
 

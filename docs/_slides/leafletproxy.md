@@ -19,7 +19,7 @@ See the app in action [here](https://shiny.sesync.org/apps/leaflet-in-R-shinydem
 
 ===
 
-Read in data for watershed boundaries for the North East USA.
+Read in data for watershed boundaries for the mid-Atlantic region of the USA.
 
 
 
@@ -30,8 +30,8 @@ wbd_reg2 <- st_read("https://raw.githubusercontent.com/khondula/leaflet-in-R-shi
 ~~~
 {:title="{{ site.data.lesson.handouts[3] }}" .no-eval .text-document}
 
-The goejson file is stored in GitHub. 
-We assign a region (North East, USA) and a EPSG:**4326** projection.
+
+We filter the GeoJSON shapefile to a single region polygon (code `"02"` is the mid-Atlantic) and transform to [EPSG:4326](https://epsg.io/4326) latitude-longitude coordinate system.
 {:.notes}
 
 ===
@@ -121,6 +121,6 @@ Normally, you create a Leaflet map using the `leaflet()` function. This creates 
 
 In the case of Shiny, you may want to further customize a map, even after it is rendered to an output. At this point, the in-memory representation of the map is long gone, and the user's web browser has already realized the Leaflet map instance.
 
-This is where `leafletProxy()` comes in. It returns an object that can stand in for the usual Leaflet map object. The usual map functions like `addPolygons` and `setView` can be called, and instead of customizing an in-memory representation, these commands will execute on the live Leaflet map instance optimizing you map! 
+This is where `leafletProxy()` comes in. It returns an object that can stand in for the usual Leaflet map object. The usual map functions like `addPolygons` and `setView` can be called, and instead of customizing an in-memory representation, these commands will execute on the live Leaflet map instance, optimizing your map! 
 
 ===

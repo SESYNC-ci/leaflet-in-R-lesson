@@ -67,7 +67,7 @@ server <- function(input, output) {
 ```
 
 We wrap the leaflet map inside the `renderLeaflet()` function, using curly brackets `{}` around the expression.
-We include two tile layers, OpenStreetMap and MODIS imagery, with layers control activated to 
+We include two tile layers, OpenStreetMap and MODIS imagery, with `addLayersControl` activated to 
 allow the user to select which one to display.
 `output$map` is assigned the map widget for the app rendered by the `renderLeaflet` function.
 {:.notes}
@@ -81,7 +81,7 @@ ui <- fluidPage(
 ```
 
 Remember, the ui is the page that humans interact with. In this case, it is a fluid page containing the map. We include the output of the `leafletOutput()` function, the map rendered in the server function, and add it to the apps page. 
-A fluid page is a browser window that scales uo or down as the window size is changed. 
+A `fluidPage()` is a browser window where the contents scale up or down as the window size is changed. 
 {:.notes}
 
 ===
@@ -128,7 +128,8 @@ shinyApp(ui, server)
 
 A new window with your leaflet map app will be launched. The `shinyApp()` function creates a Shiny app from an ui/server pair. 
 
-Refer to [Shinny Apps](https://cyberhelp.sesync.org/basic-Shiny-lesson/) for a more in depth lesson on Shinny. 
+Refer to our [Shiny Apps lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/) to learn more about Shiny.
+{:.notes}
 
 ===
 
@@ -159,15 +160,8 @@ runGitHub("<USERNAME>/<REPO>")
 
 ---
 
-You can share your Shiny app as as web page. This is the prefered way to share Shiny apps since users do not need to have R installed on their computers.
+You can share your Shiny app as a web page. This is the preferred way to share Shiny apps since users do not need to have R installed on their computers.
 
-To share just the UI (i.e. the web page), your app will need to be hosted by a server able to run the R code that powers the app while also acting as a public web server. There is limited free hosting available through RStudio with [shinyapps.io](https://www.shinyapps.io). 
+To share just the UI (i.e. the web page), your app will need to be hosted by a server able to run the R code that powers the app while also acting as a public web server. There is limited free hosting available through RStudio with [shinyapps.io](https://www.shinyapps.io).
 
-If your are associated with SESYNC,  SESYNC maintains a Shiny Apps server for our working group participants, and many other research centers are doing the same.
-
-Check out these series of articles on the RStudio website [about deploying apps](https://shiny.rstudio.com/articles/#deployment).
-
-For other ways to share your app check [this](https://shiny.rstudio.com/tutorial/written-tutorial/lesson7/) out.
-
-
-
+Check out these series of articles on the RStudio website [about deploying apps](https://shiny.rstudio.com/articles/#deployment) or this [tutorial on sharing Shiny apps](https://shiny.rstudio.com/tutorial/written-tutorial/lesson7/).
