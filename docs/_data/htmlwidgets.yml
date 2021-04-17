@@ -80,7 +80,7 @@
   all_files: no
 - name: leaflet-providers
   version: 1.9.0
-  src: htmlwidgets
+  src: htmlwidgets/lib/leaflet-providers
   meta: ~
   script: leaflet-providers_1.9.0.js
   stylesheet: ~
