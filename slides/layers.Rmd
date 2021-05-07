@@ -26,7 +26,7 @@ leaflet() %>%
 
 ===
 
-Another type of tile layer is avaible through many web mapping services (WMS), such as the real-time weather radar data from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/ogc/).
+Another type of tile layer is available through many web mapping services (WMS), such as the real-time weather radar data from the [Iowa Environmental Mesonet](https://mesonet.agron.iastate.edu/ogc/).
 
 ```{r leaflet_wms, handout = 0}
 leaflet() %>%

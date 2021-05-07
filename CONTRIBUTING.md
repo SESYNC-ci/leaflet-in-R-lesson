@@ -209,7 +209,11 @@ a hash that is generated within your Rstudio session every time Rstudio restarts
 it is hard-coded into the file paths for the images and stylesheets. If this is not done, the
 images will appear as "broken links" in the slideshow, and the slides will be formatted incorrectly.
 
-**Important note**: If you display the lesson as a slideshow in the viewer pane using
+### Additional notes on previewing
+
+- It's always a good idea to delete `cache` from the lesson's root directory before building.
+- For lessons that rely on `htmlwidgets` such as `leaflet`, it's a good idea to delete `docs/assets/htmlwidgets` somewhat regularly. This can avoid issues with the build, although it can make for slower builds because some dependencies are big.
+- **Important note**: If you display the lesson as a slideshow in the viewer pane using
 `server::httw('docs/_site', initpath = 'slideshow/')`, the images do not display. This is 
 a feature, not a bug! The idea is for the instructor to generate the plots and other images
 and display them in their "Plots" tab, not on the slide.
@@ -217,8 +221,9 @@ and display them in their "Plots" tab, not on the slide.
 ## Releases and Handouts
 
 *Before teaching a lesson*: Bump the `tag` value in `docs/_data/lesson.yml`. This will be the version number for the GitHub release. 
-Then, create a release on GitHub using the `tag` value as the version with a "handouts.zip" (created through `make release`) attached. 
-To get the file contents for the release description, use `tree` on the unzipped handouts directory. 
+Then, run `make release` to create a `handouts.zip` file in the lesson's root directory.
+Next, create a release on GitHub, using the `tag` value as the version, with `handouts.zip` (created through `make release`) attached. 
+To get the file contents for the release description, use `tree` on the unzipped `handouts` directory. 
 Copy and paste the output of `tree handouts` into the release description.
 
 *After teaching a lesson*: A lesson should be archived after any event in which it is presented&mdash;either in a workshop or à la carte setting. 

@@ -10,7 +10,7 @@ handouts:
   - data/cb_2016_us_county_5m
   - data/huc250k
   - data/README.md
-tag: v0.2
+tag: v0.3
 lesson: 4
 instructor: Andres Garcia
 lifecycle: stable # status for lifecycle badge
@@ -19,6 +19,7 @@ warning: false # whether to include note about lifecycle status
 authors: 
 - Kelly Hondula
 - Ian Carroll
+- Andres Garcia
 sorter:
   - intro
   - leaflet
