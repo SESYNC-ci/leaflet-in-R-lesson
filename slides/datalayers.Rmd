@@ -22,9 +22,11 @@ library(raster)
 library(dplyr)
 wqp_sites <- st_read("data/wqp_sites")
 counties_md <- st_read("data/cb_2016_us_county_5m") %>% 
-  filter(STATEFP == "24") %>% st_transform(4326)
+  filter(STATEFP == "24") %>% 
+  st_transform(4326)
 wbd_reg2 <- st_read("data/huc250k/") %>%
-  filter(REG == "02") %>% st_transform(4326)
+  filter(REG == "02") %>% 
+  st_transform(4326)
 nlcd <- raster("data/nlcd_crop.grd")
 ```
 
@@ -83,7 +85,7 @@ leaflet() %>%
   addPolygons(data = wbd_reg2, 
               fillColor = ~pal(AREA), 
               fillOpacity = 1, 
-              weight =1)
+              weight = 1)
 ```
 
 Load the RColorBrewer library to see information about palettes in the `brewer.pal.info` data.frame.
@@ -101,7 +103,7 @@ leaflet() %>%
   addPolygons(data = wbd_reg2, 
               fillColor = ~pal(AREA), 
               fillOpacity = 0.9, 
-              weight =1) %>%
+              weight = 1) %>%
   addLegend(pal = pal, values = wbd_reg2$AREA, title = "Watershed Area")
 ```
 
@@ -133,7 +135,7 @@ leaflet() %>%
 
 Here, we use the function `markerClusterOptions()` with all default arguments. This will use pre-defined logic to decide 
 how many markers to collapse together at each zoom level. The `popup` argument will only
-show the popup text when you are zoomed in far enough to click on an individual marker.
+show the popup text when you are zoomed in far enough to click on an individual marker. 
 {:.notes}
 
 ===

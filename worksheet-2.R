@@ -1,12 +1,10 @@
 # worksheet 2
 # leaflet with data
 
-library(leaflet)
 library(sf) # read in points and polygons
 library(raster) # read in raster
 library(dplyr) # filter sf objects
 library(RColorBrewer) # for brewer.pal.info
-library(htmlwidgets) # for visualizing maps in a browser
 
 # read in water quality portal points
 wqp_sites <- ...("data/wqp_sites")
@@ -27,11 +25,8 @@ nlcd <- ...("data/nlcd_crop.grd")
 # add polygons
 
 leaflet() %>%
-  ...(data = counties_md)
-
-leaflet() %>%
   ...() %>%
-  addPolygons(data = counties_md)
+  ...(data = counties_md)
 
 leaflet() %>%
   addTiles() %>%
@@ -61,7 +56,7 @@ leaflet() %>%
   addPolygons(data = wbd_reg2, 
               fillColor = ..., 
               fillOpacity = 1, 
-              weight =1)
+              weight = 1)
 
 # add Legend
 
@@ -70,14 +65,16 @@ leaflet() %>%
   addPolygons(data = wbd_reg2, 
               fillColor = ~pal(AREA), 
               fillOpacity = 0.9, 
-              weight =1) %>%
+              weight = 1) %>%
   ...
 
 # add points
 
 leaflet() %>%
   addTiles() %>%
-  ...(data = wqp_sites[1:1000,])
+  ...(data = wqp_sites[1:1000,], group = ...) %>%
+  ...(data = wqp_sites[1:1000,], radius = 5, group = ...) %>%
+  ...(baseGroups = c(...))
 
 # cluster points
 
@@ -95,6 +92,9 @@ leaflet() %>%
 
 # Publish a map using html and a web hosting service
 # Create a leaflet map, add tiles, and set the view
+
+library(htmlwidgets) 
+
 map <- leaflet() %>%
   addTiles() %>%
   setView(lng = -76.505206, lat = 38.9767231, zoom = 5) %>%
@@ -106,7 +106,4 @@ map <- leaflet() %>%
   )
 
 # save map to working directory as an html file
-saveWidget(map, file="map.html")
-
-# save map to a specific directory
-#saveWidget(map, file="/data/map.html")
+...(map, file="map.html")

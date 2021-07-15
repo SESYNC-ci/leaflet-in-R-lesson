@@ -3,10 +3,6 @@
 
 library(leaflet)
 
-# basic leaflet
-leaflet() %>%
-  ...()
-
 # set viewing area
 leaflet() %>%
   addTiles() %>%
@@ -51,7 +47,7 @@ nhd_wms_url <- "https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServ
 
 leaflet() %>% 
   setView(lng = -111.846061, lat = 36.115847, zoom = 12) %>%
-  add
+  ...(..., layers = "0")
 
 # mini map
 
@@ -67,6 +63,7 @@ leaflet() %>%
   addWMSTiles(nhd_wms_url, layers = "0") %>%
   addMiniMap(zoomLevelOffset = -4) %>%
   ... 
+  ...
   ...
   ...
   

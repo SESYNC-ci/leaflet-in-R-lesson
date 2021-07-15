@@ -13,7 +13,6 @@ Create a map centered on Annapolis and add a weather data tile.
 
 
 ~~~r
-library(leaflet)
 library(htmlwidgets)
 
 map <- leaflet() %>%

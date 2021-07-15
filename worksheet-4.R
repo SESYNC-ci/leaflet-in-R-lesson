@@ -1,5 +1,5 @@
 # worksheet 4
-# leaflet in shiny with leaflet proxy
+# leaflet in shiny with leafletProxy
 
 library(shiny)
 library(leaflet)
