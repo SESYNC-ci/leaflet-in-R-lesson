@@ -3,17 +3,13 @@
 
 ## Publish a Leaflet Map
 
-You can render a map and publish it using the `htmlwidgets` package.  
-HTML widgets work just like R plots, except they produce interactive visualizations. 
-
-===
-
-A line or two of R code is all it takes to produce a Leaflet map as an HTML file.  
+You can render a map and publish it as an HTML file using the `htmlwidgets` package.
 Your HTML map can be used as a standalone website or embedded in an existing website. 
 
 ===
 
-Using leaflet, create a map centered on Annapolis and add a weather data tile. 
+Create a map centered on Annapolis and add a weather data tile. 
+
 
 
 ~~~r
@@ -37,6 +33,7 @@ map <- leaflet() %>%
 
 Now that we have a map, let's save it by using the `saveWidget()`function.
 `saveWidget()` will save your map to your working directory as a `.html` file.
+
 
 
 ~~~r
@@ -77,9 +74,5 @@ If you prefer to embed your map inside a project, personal, or any other website
 ```
 This is a good option when you already have a site built and would like to add your map to share it.
 
-===
-
 Web development is out of the scope of this lesson, but please check this [tutorial](https://www.tutorialrepublic.com/html-tutorial/html-iframes.php) out if you would like to learn more about using the `iframe` tag in your websites. 
 {:.notes}
-
-===
