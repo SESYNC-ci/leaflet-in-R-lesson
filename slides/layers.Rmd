@@ -85,7 +85,7 @@ leaflet() %>%
 Use *EasyButtons* to add simple buttons that trigger custom JavaScript logic.
 The function `addEasyButton()` adds a simple button to perform an action on your leaflet map.
 
-This map adds one easy button to attempt to locate you.
+This map adds one *EasyButton* to attempt to locate you.
 
 ```{r leaflet_extras2, handout = 0, eval = FALSE}
 leaflet() %>%

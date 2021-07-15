@@ -30,5 +30,5 @@ For Shiny apps
 * `renderLeaflet()` objects in the server and use them in the ui with `leafletOutput()`
 * Use `shinyApp()` to display your map with Shiny.  
 * Host your app on GitHub or another web server and share your app. 
-* Optimize your Shiny maps using `leafletproxy()`
+* Optimize your Shiny maps using `leafletProxy()`
 
