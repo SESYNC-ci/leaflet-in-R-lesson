@@ -10,7 +10,7 @@ handouts:
   - data/cb_2016_us_county_5m
   - data/huc250k
   - data/README.md
-tag: v0.3
+tag: v0.4
 lesson: 9
 instructor: Quentin Read
 lifecycle: stable # status for lifecycle badge
@@ -20,6 +20,7 @@ authors:
 - Kelly Hondula
 - Ian Carroll
 - Andres Garcia
+- Quentin Read
 sorter:
   - intro
   - leaflet
