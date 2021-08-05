@@ -1,0 +1,118 @@
+---
+---
+
+## Exercises
+
+===
+
+### Exercise 1
+
+Create a leaflet map with a marker at a location and zoom level of your choice that includes
+
+- Background imagery from a tile provider of your choice (**Hint**: browse options in the `providers` list)
+- A label that appears when the mouse hovers over the marker (**Hint**: use the `label` argument to `addMarkers()`)
+
+[View solution](#solution-1)
+{:.notes}
+
+===
+
+### Exercise 2
+
+Create a leaflet map with default background imagery and the `counties_md` polygons colored by area (the `ALAND` column), using the `"Oranges"` palette. 
+
+**Hint**: You will need to define a palette function using `colorNumeric()` before you create the map. The first argument to `colorNumeric()` should be the name of the palette (`"Oranges"`), and the second argument is the range of values to map to colors (`counties_md$ALAND`).
+
+[View solution](#solution-2)
+{:.notes}
+
+===
+
+### Exercise 3
+
+Modify the Shiny app on worksheet 3 (the app where the user selects a date of MODIS imagery to display) to do the following:
+
+- Always display both the OpenStreetMap and MODIS layers, instead of letting the user choose.
+- Include a slider labeled "Set Opacity" that will allow the user to modify the variable `input$opacity`.
+- Use the variable `input$opacity` to set the opacity of the MODIS layer between 0 and 1, with the default value being 1.
+
+This is challenging so don't be afraid to look at the hints!
+
+**Hints**:
+
+- Remove the `addLayersControl()` function entirely to disable the switching on and off of layers.
+- Add another argument to `absolutePanel()` after the `dateInput()`. This argument will be `sliderInput()`.
+- The arguments to `sliderInput()` should be the input variable name (`"opacity"`), the label that the user will see (`"Set Opacity"`), the minimum value (`min = 0`), the maximum value (`max = 1`), and the default value (`value = 1`).
+- Finally, add another argument to `providerTileOptions()` to set the opacity (`opacity = input$opacity`).
+
+[View solution](#solution-3)
+{:.notes}
+
+===
+
+## Solutions
+
+===
+
+### Solution 1
+
+This is an example solution centered on the Washington Monument, zoomed in to level 14, with `Stamen.Toner` background imagery.
+
+```{r eval = FALSE}
+lng <- -77.0351929
+lat <- 38.8894791
+leaflet() %>%
+  setView(lng = lng, lat = lat, zoom = 14) %>%
+  addProviderTiles(providers$Stamen.Toner) %>%
+  addMarkers(lng = lng, lat = lat, label = "Yep, that's it") 
+```
+
+[Return](#exercise-1)
+{:.notes}
+
+===
+
+## Solution 2
+
+```{r eval = FALSE}
+pal <- colorNumeric('Oranges', counties_md$ALAND)
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = counties_md, 
+              fillColor = ~ pal(ALAND))
+```
+
+[Return](#exercise-2)
+{:.notes}
+
+===
+
+### Solution 3
+
+```{r eval = FALSE}
+ui <- fluidPage(
+  leafletOutput("map", height = 800),
+  # add calendar panel
+  absolutePanel(top = 100, right = 10, draggable = TRUE,
+                dateInput("dateinput", "Imagery Date", value = "2018-03-28"),
+                sliderInput("opacity", "Opacity", min = 0, max = 1, value = 1)
+  ))
+
+server <- function(input, output) {
+  
+  output$map <- renderLeaflet({
+    # leaflet map is defined here with tiles and initial view, and no layer control
+    leaflet() %>%
+      addTiles(group = "OSM") %>%
+      addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
+                       options = providerTileOptions(time = input$dateinput, opacity = input$opacity)) %>%
+      setView(lng = -76.505206, lat = 38.9767231, zoom = 7)
+  })
+  
+}
+
+shinyApp(ui, server)
+```
+
+[Return](#exercise-3)
+{:.notes}
