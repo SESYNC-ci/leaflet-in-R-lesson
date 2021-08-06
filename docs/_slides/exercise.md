@@ -61,14 +61,18 @@ This is challenging so don't be afraid to look at the hints!
 
 This is an example solution centered on the Washington Monument, zoomed in to level 14, with `Stamen.Toner` background imagery.
 
-```{r eval = FALSE}
-lng <- -77.0351929
-lat <- 38.8894791
-leaflet() %>%
-  setView(lng = lng, lat = lat, zoom = 14) %>%
-  addProviderTiles(providers$Stamen.Toner) %>%
-  addMarkers(lng = lng, lat = lat, label = "Yep, that's it") 
-```
+
+
+~~~r
+> lng <- -77.0351929
+> lat <- 38.8894791
+> leaflet() %>%
++   setView(lng = lng, lat = lat, zoom = 14) %>%
++   addProviderTiles(providers$Stamen.Toner) %>%
++   addMarkers(lng = lng, lat = lat, label = "Yep, that's it") 
+~~~
+{:title="Console" .no-eval .input}
+
 
 [Return](#exercise-1)
 {:.notes}
@@ -77,14 +81,18 @@ leaflet() %>%
 
 ## Solution 2
 
-```{r eval = FALSE}
-pal <- colorNumeric('Oranges', counties_md$ALAND)
-leaflet() %>%
-  addTiles() %>%
-  addPolygons(data = counties_md, 
-              fillColor = ~ pal(ALAND),
-              fillOpacity = 1)
-```
+
+
+~~~r
+> pal <- colorNumeric('Oranges', counties_md$ALAND)
+> leaflet() %>%
++   addTiles() %>%
++   addPolygons(data = counties_md, 
++               fillColor = ~ pal(ALAND),
++               fillOpacity = 1)
+~~~
+{:title="Console" .no-eval .input}
+
 
 [Return](#exercise-2)
 {:.notes}
@@ -98,30 +106,34 @@ below the date selector in the input panel.
 Also notice that on line 16, `providerTileOptions()` has two arguments, `time` and `opacity`, both of which get values
 from the `input` variable that the user can modify.
 
-```{r eval = FALSE}
-ui <- fluidPage(
-  leafletOutput("map", height = 800),
-  # add calendar panel
-  absolutePanel(top = 100, right = 10, draggable = TRUE,
-                dateInput("dateinput", "Imagery Date", value = "2018-03-28"),
-                sliderInput("opacity", "Set Opacity", min = 0, max = 1, value = 1)
-  ))
 
-server <- function(input, output) {
-  
-  output$map <- renderLeaflet({
-    # leaflet map is defined here with tiles and initial view, and no layer control
-    leaflet() %>%
-      addTiles(group = "OSM") %>%
-      addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
-                       options = providerTileOptions(time = input$dateinput, opacity = input$opacity)) %>%
-      setView(lng = -76.505206, lat = 38.9767231, zoom = 7)
-  })
-  
-}
 
-shinyApp(ui, server)
-```
+~~~r
+> ui <- fluidPage(
++   leafletOutput("map", height = 800),
++   # add calendar panel
++   absolutePanel(top = 100, right = 10, draggable = TRUE,
++                 dateInput("dateinput", "Imagery Date", value = "2018-03-28"),
++                 sliderInput("opacity", "Set Opacity", min = 0, max = 1, value = 1)
++   ))
+> 
+> server <- function(input, output) {
++   
++   output$map <- renderLeaflet({
++     # leaflet map is defined here with tiles and initial view, and no layer control
++     leaflet() %>%
++       addTiles(group = "OSM") %>%
++       addProviderTiles(providers$NASAGIBS.ModisTerraTrueColorCR, group = "Modis",
++                        options = providerTileOptions(time = input$dateinput, opacity = input$opacity)) %>%
++       setView(lng = -76.505206, lat = 38.9767231, zoom = 7)
++   })
++   
++ }
+> 
+> shinyApp(ui, server)
+~~~
+{:title="Console" .no-eval .input}
+
 
 [Return](#exercise-3)
 {:.notes}
