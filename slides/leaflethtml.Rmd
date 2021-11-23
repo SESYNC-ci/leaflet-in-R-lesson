@@ -53,8 +53,8 @@ Your map is now live. You can now share the link with your colleagues to share y
 ===
 
 For more information about GitHub Pages, including a walkthrough of the steps above, 
-please see our lesson on [Advanced git Techniques](https://cyberhelp.sesync.org/advanced-git-lesson/#/slides/pages). 
-For information on getting started with GitHub, check out our [Basic git](https://cyberhelp.sesync.org/basic-git-lesson/) lesson.
+please see our lesson on [Advanced git Techniques]({{ site.gh-pages }}/advanced-git-lesson/#/slides/pages). 
+For information on getting started with GitHub, check out our [Basic git]({{ site.gh-pages }}/basic-git-lesson/) lesson.
 {:.notes}
 ---
 
