@@ -14,7 +14,7 @@ Incorporating leaflet maps into Shiny applications allows for creating more cust
 
 ===
 
-As you may have learned in the [Shiny lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/#/slides/files), the app comprises a *user interface* object that defines how it appears, and a *server* object that defines how it behaves. 
+As you may have learned in the [Shiny lesson]({{ site.gh-pages }}/basic-Shiny-lesson/#/slides/files), the app comprises a *user interface* object that defines how it appears, and a *server* object that defines how it behaves. 
 
 ===
 
@@ -152,7 +152,7 @@ shinyApp(ui, server)
 
 A new window with your leaflet map app will be launched. The `shinyApp()` function creates a Shiny app from an ui/server pair. 
 
-Refer to our [Shiny Apps lesson](https://cyberhelp.sesync.org/basic-Shiny-lesson/) to learn more about Shiny.
+Refer to our [Shiny Apps lesson]({{ site.gh-pages }}/basic-Shiny-lesson/) to learn more about Shiny.
 {:.notes}
 
 ===
